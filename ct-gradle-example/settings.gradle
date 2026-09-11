@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+// Composite build: treat parent Cascara repository as a plugin build
+includeBuild("..") {
+    dependencySubstitution {
+        substitute module("io.github.qishr.cascara-gradle-plugins.ct:io.github.qishr.cascara-gradle-plugins.ct.gradle.plugin") using project(":ct-gradle-plugin")
+    }
+}
+
+rootProject.name = "ct-gradle-example"

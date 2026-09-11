@@ -1,0 +1,28 @@
+include "res://ghostty.ct";
+
+Palette ghostty-ui = {
+    background = terminal.background;
+    foreground = terminal.foreground;
+    cursor-color = terminal.cursorBackground;
+    selection-background = terminal.selectionBackground;
+    selection-foreground = terminal.selectionForeground;
+};
+
+Palette ghostty-palette = {
+    palette0 = terminal.black;
+    palette1 = terminal.red;
+    palette2 = terminal.green;
+    palette3 = terminal.yellow;
+    palette4 = terminal.blue;
+    palette5 = terminal.magenta;
+    palette6 = terminal.cyan;
+    palette7 = terminal.white;
+    palette8 = terminal.brightBlack;
+    palette9 = terminal.brightRed;
+    palette10 = terminal.brightGreen;
+    palette11 = terminal.brightYellow;
+    palette12 = terminal.brightBlue;
+    palette13 = terminal.brightMagenta;
+    palette14 = terminal.brightCyan;
+    palette15 = terminal.brightWhite;
+};

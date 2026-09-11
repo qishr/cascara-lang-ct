@@ -1,0 +1,31 @@
+include "res://iterm2.ct";
+
+Palette iterm2 = {
+    ansi0 = terminal.black;
+    ansi1 = terminal.red;
+    ansi2 = terminal.green;
+    ansi3 = terminal.yellow;
+    ansi4 = terminal.blue;
+    ansi5 = terminal.magenta;
+    ansi6 = terminal.cyan;
+    ansi7 = terminal.white;
+    ansi8 = terminal.brightBlack;
+    ansi9 = terminal.brightRed;
+    ansi10 = terminal.brightGreen;
+    ansi11 = terminal.brightYellow;
+    ansi12 = terminal.brightBlue;
+    ansi13 = terminal.brightMagenta;
+    ansi14 = terminal.brightCyan;
+    ansi15 = terminal.brightWhite;
+
+    background = terminal.background;
+    foreground = terminal.foreground;
+    badge = ui.badgeBackground;
+    bold = uiCommon.primary0;
+    cursor = terminal.cursorBackground;
+    cursorGuide = ui.sideBarDropBackground;
+    cursorText = terminal.cursorForeground;
+    link = ui.textLinkForeground;
+    selectedText = terminal.selectionForeground;
+    selection = terminal.selectionBackground;
+};

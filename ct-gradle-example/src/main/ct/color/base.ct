@@ -1,0 +1,92 @@
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.adjustBlue;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.brightness;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.hsbaLerp;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.saturation;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgbaLerp;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgb;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgba;
+
+Color brightBeige = #9a9676;
+Color dullBeige = #3C392B;
+Color heavyMetal = #2D3527;
+
+// Human vision colors
+Palette human = {
+    red = #FF0000;
+    yellow = #FFFF00;
+    green = #00FF00;
+    blue = #0000FF;
+};
+
+Palette pure = {
+    black = #000000;
+    blue = human.blue;
+    cyan = hsbaLerp(human.green, human.blue, 0.5);
+    green = human.green;
+    magenta = hsbaLerp(human.green, human.red, 0.5);
+    red = human.red;
+    white = #FFFFFF;
+    yellow = human.yellow;
+};
+
+Palette default = {
+    black = #222222;
+    blue = brightness(pure.blue, -20%);
+    cyan = brightness(pure.cyan, -20%);
+    green = brightness(pure.green, -20%);
+    magenta = brightness(pure.magenta, -20%);
+    red = brightness(pure.red, -20%);
+    white = #CCCCCC;
+    yellow = brightness(pure.yellow, -20%);
+    brightBlack = pure.black;
+    brightBlue = pure.blue;
+    brightCyan = pure.cyan;
+    brightGreen = pure.green;
+    brightMagenta = pure.magenta;
+    brightRed = pure.red;
+    brightWhite = pure.white;
+    brightYellow = pure.yellow;
+};
+
+Palette desaturated = saturation(default, -20%);
+Palette base = rgbaLerp(desaturated, textForeground, 0.65);
+
+Palette baseGraph = {
+    data0 = #5ba53e;
+    data1 = #367cbd;
+    data2 = #d7b04d;
+    data3 = #d64528;
+    data4 = #513857;
+    data5 = #667b38;
+    data6 = #79724b;
+    data7 = #9c594c;
+    data8 = #5a475f;
+};
+
+// TODO: Combine baseGraph and baseLang into baseNode or similar.
+
+Palette baseLang = {
+    comment = #766ea1;
+    module = base.red;
+    namespace = #9daf9f;
+    keyword = base.red;
+    method = #CECC99;
+    operator = #C6C2C1;
+    punctuation = #56b6c2;
+    modifier = #867c97;
+    regex = #89DDFF;
+
+    constantName = #5bb0ff;
+    objectName = base.blue;
+    typeName = base.green;
+    variableName = base.blue;
+
+    numericalValue = #9CDCFE;
+    textualValue = base.yellow;
+};
+
+// blue = #a0d0ea;
+// green = #bbdabf;
+// red = #D0ADCD;
+// yellow = #EFC396;
+

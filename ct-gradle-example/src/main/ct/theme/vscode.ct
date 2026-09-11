@@ -1,0 +1,600 @@
+include "res://vscode.ct";
+
+Palette vscode-ui = {
+    focusBorder = ui.focusBorder;
+    icon.foreground = ui.iconForeground;
+    foreground = ui.foreground;
+    textLink.foreground = ui.textLinkForeground;
+    textLink.activeForeground = ui.textLinkForeground;
+    errorForeground = ui.errorForeground;
+
+
+
+    //
+    // Title Bar
+    //
+
+    titleBar.activeBackground = ui.titleBarActiveBackground;
+    titleBar.inactiveBackground = ui.titleBarInactiveBackground;
+    titleBar.activeForeground = ui.titleBarActiveForeground;
+    toolbar.hoverBackground = ui.toolbarHoverBackground;
+    toolbar.activeBackground = ui.toolbarActiveBackground;
+
+
+
+    //
+    // Status Bar
+    //
+
+    statusBar.background = ui.statusBarBackground;
+    statusBar.debuggingBackground = ui.statusBarDebuggingBackground;
+    statusBar.debuggingForeground = ui.statusBarDebuggingForeground;
+    statusBar.foreground = ui.statusBarForeground;
+    statusBarItem.remoteBackground = ui.statusBarItemRemoteBackground;
+    statusBarItem.remoteForeground = ui.statusBarItemRemoteForeground;
+    statusBarItem.remoteHoverBackground = ui.statusBarItemRemoteHoverBackground;
+    statusBarItem.remoteHoverForeground = ui.statusBarItemRemoteHoverForeground;
+    statusBarItem.hoverBackground = ui.statusBarItemHoverBackground;
+    statusBarItem.hoverForeground = ui.statusBarItemHoverForeground;
+    statusBar.noFolderBackground = ui.statusBarNoFolderBackground;
+
+    statusBarItem.prominentForeground = ui.statusBarItemProminentForeground;
+    statusBarItem.prominentBackground = ui.statusBarItemProminentBackground;
+    statusBarItem.prominentHoverForeground = ui.statusBarItemProminentHoverForeground;
+    statusBarItem.prominentHoverBackground = ui.statusBarItemProminentHoverBackground;
+
+
+
+    //
+    // Command Center
+    //
+
+    commandCenter.activeBackground = ui.commandCenterActiveBackground;
+    commandCenter.activeBorder = ui.commandCenterActiveBorder;
+    commandCenter.activeForeground = ui.commandCenterActiveForeground;
+    commandCenter.background = ui.commandCenterBackground;
+    commandCenter.border = ui.commandCenterBorder;
+    commandCenter.debuggingBackground = ui.commandCenterDebuggingBackground;
+    commandCenter.foreground = ui.commandCenterForeground;
+    commandCenter.inactiveBorder = ui.commandCenterInactiveBorder;
+    commandCenter.inactiveForeground = ui.commandCenterInactiveForeground;
+
+
+
+    //
+    // Activity Bar
+    //
+
+    badge.background = ui.badgeBackground;
+    badge.foreground = ui.badgeForeground;
+    activityBar.activeBackground = ui.activityBarActiveBackground;
+    activityBarBadge.background = ui.activityBarBadgeBackground;
+    activityBar.background = ui.activityBarBackground;
+    activityBar.inactiveForeground = ui.activityBarInactiveForeground;
+    activityBar.foreground = ui.activityBarForeground;
+    activityBar.activeBorder = ui.activityBarActiveBorder;
+    activityBarBadge.foreground = ui.activityBarBadgeForeground;
+    activityWarningBadge.background = ui.activityWarningBadgeBackground;
+    activityWarningBadge.foreground = ui.activityWarningBadgeForeground;
+    activityErrorBadge.background = ui.activityErrorBadgeBackground;
+    activityErrorBadge.foreground = ui.activityErrorBadgeForeground;
+    activityBarTop.inactiveForeground = ui.activityBarTopInactiveForeground;
+    activityBarTop.activeBackground = ui.activityBarTopActiveBackground;
+    activityBarTop.foreground = ui.activityBarTopForeground;
+    activityBarTop.activeBorder = ui.activityBarTopActiveBorder;
+    activityBarTop.dropBorder = ui.activityBarTopDropBorder;
+
+
+
+    //
+    // Sidebar
+    //
+
+    sideBar.background = ui.sideBarBackground;
+    sideBar.foreground = ui.sideBarForeground;
+    sideBar.dropBackground = ui.sideBarDropBackground;
+    sideBar.border = ui.sideBarBorder;
+    sideBarTitle.foreground = ui.sideBarTitleForeground;
+    sideBarTitle.background = ui.sideBarTitleBackground;
+    sideBarSectionHeader.background = ui.sideBarSectionHeaderBackground;
+    sideBarSectionHeader.foreground = ui.sideBarSectionHeaderForeground;
+    sideBarSectionHeader.border = ui.sideBarSectionHeaderBorder;
+
+
+
+    //
+    // Lists
+    //
+
+    list.focusBackground = ui.listFocusBackground;
+    list.focusForeground = ui.listFocusForeground;
+    list.focusOutline = ui.listFocusOutline;
+    list.focusAndSelectionOutline = ui.listFocusAndSelectionOutline;
+
+    list.focusHighlightForeground = ui.listFocusHighlightForeground;
+    list.highlightForeground = ui.listHighlightForeground;
+
+    list.warningForeground = ui.listWarningForeground;
+    list.deemphasizedForeground = ui.listDeemphasizedForeground;
+    list.invalidItemForeground = ui.listInvalidItemForeground;
+    list.errorForeground = ui.listErrorForeground;
+    list.focusBackground = ui.listFocusBackground;
+    list.activeSelectionBackground = ui.listActiveSelectionBackground;
+    list.activeSelectionForeground = ui.listActiveSelectionForeground;
+    list.inactiveSelectionBackground = ui.listInactiveSelectionBackground;
+    list.inactiveSelectionForeground = ui.listInactiveSelectionForeground;
+    list.filterMatchBackground = ui.listFilterMatchBackground;
+    list.hoverBackground = ui.listHoverBackground;
+    tree.indentGuidesStroke = ui.treeIndentGuidesStroke;
+    tree.inactiveIndentGuidesStroke = ui.treeInactiveIndentGuidesStroke;
+    list.activeSelectionIconForeground = ui.listActiveSelectionIconForeground;
+    list.inactiveSelectionIconForeground = ui.listInactiveSelectionIconForeground;
+
+
+    //
+    // Widgets and Inputs
+    //
+
+    widget.shadow = ui.widgetShadow;
+    widget.border = ui.widgetBorder;
+
+    inputValidation.errorBackground =  ui.inputValidationErrorBackground;
+
+    input.background = ui.inputBackground;
+    input.placeholderForeground = ui.inputPlaceholderForeground;
+    input.border = ui.inputBorder;
+    input.foreground = ui.inputForeground;
+
+    dropdown.listBackground = ui.dropdownListBackground;
+    dropdown.background = ui.dropdownBackground;
+    dropdown.border = ui.dropdownBorder;
+    dropdown.foreground = ui.dropdownForeground;
+
+    button.background = ui.buttonBackground;
+    button.foreground = ui.buttonForeground;
+
+
+
+    //
+    // Menu
+    //
+
+    menu.background = ui.menuBackground;
+    menu.foreground = ui.menuForeground;
+    menu.border = ui.menuBorder;
+    menu.selectionForeground = ui.menuSelectionForeground;
+    menu.selectionBackground = ui.menuSelectionBackground;
+    menu.selectionBorder = ui.menuSelectionBorder;
+    menu.separatorBackground = ui.menuSeparatorBackground;
+    menubar.selectionBackground = ui.menubarSelectionBackground;
+    menubar.selectionForeground = ui.menubarSelectionForeground;
+
+
+
+    //
+    // Scrolling
+    //
+
+    scrollbar.shadow = ui.scrollbarShadow;
+    scrollbarSlider.activeBackground = ui.scrollbarSliderActiveBackground;
+    scrollbarSlider.background = ui.scrollbarSliderBackground;
+    scrollbarSlider.hoverBackground = ui.scrollbarSliderHoverBackground;
+
+
+
+    //
+    // Tabs
+    //
+
+    tab.activeBackground = ui.tabActiveBackground;
+    tab.activeForeground = ui.tabActiveForeground;
+    tab.inactiveBackground = ui.tabInactiveBackground;
+    tab.inactiveForeground = ui.tabInactiveForeground;
+    tab.selectedBorderTop = ui.tabSelectedBorderTop;
+    tab.activeBorder = ui.tabActiveBorder;
+    tab.selectedBackground = ui.tabSelectedBackground;
+    tab.selectedForeground = ui.tabSelectedForeground;
+
+    tab.activeModifiedBorder = ui.tabActiveModifiedBorder;
+    tab.border = ui.tabBorder;
+    tab.dragAndDropBorder = ui.tabDragAndDropBorder;
+    tab.inactiveModifiedBorder = ui.tabInactiveModifiedBorder;
+    tab.lastPinnedBorder = ui.tabLastPinnedBorder;
+    tab.unfocusedActiveBackground = ui.tabUnfocusedActiveBackground;
+    tab.unfocusedActiveForeground = ui.tabUnfocusedActiveForeground;
+    tab.unfocusedActiveModifiedBorder = ui.tabUnfocusedActiveModifiedBorder;
+    tab.unfocusedInactiveBackground = ui.tabUnfocusedInactiveBackground;
+    tab.unfocusedInactiveForeground = ui.tabUnfocusedInactiveForeground;
+    tab.unfocusedInactiveModifiedBorder = ui.tabUnfocusedInactiveModifiedBorder;
+    editorGroupHeader.noTabsBackground = ui.editorGroupHeaderNoTabsBackground;
+    editorGroupHeader.tabsBackground = ui.editorGroupHeaderTabsBackground;
+
+
+
+    //
+    // Welcome Page
+    //
+
+    welcomePage.tileBackground = ui.welcomePageTileBackground;
+    welcomePage.progress.foreground = ui.welcomePageProgressForeground;
+    welcomePage.background = ui.welcomePageBackground;
+    // TODO = There are other welcome page parameters
+
+
+
+    //
+    // Editor
+    //
+
+    breadcrumb.foreground = ui.breadcrumbForeground;
+    breadcrumb.background = ui.breadcrumbBackground;
+    breadcrumb.focusForeground = ui.breadcrumbFocusForeground;
+    breadcrumb.activeSelectionForeground = ui.breadcrumbActiveSelectionForeground;
+    breadcrumbPicker.background = ui.breadcrumbPickerBackground;
+
+    minimap.errorHighlight = ui.minimapErrorHighlight;
+
+    editorError.foreground = ui.editorErrorForeground;
+    editor.foreground = ui.editorForeground;
+    editor.background = ui.editorBackground;
+
+    editor.lineHighlightBackground = ui.editorLineHighlightBackground;
+    editor.inactiveLineHighlightBackground = ui.editorInactiveLineHighlightBackground;
+    editor.lineHighlightBorder = ui.editorLineHighlightBorder;
+
+    // editor.selectionHighlightBackground = #231E2977;
+    // editor.findMatchHighlightBorder = #e0caa9;
+    editorLineNumber.foreground = ui.editorLineNumberForeground;
+    editorLineNumber.activeForeground = ui.editorLineNumberActiveForeground;
+    editor.selectionBackground  = ui.editorSelectionBackground;
+    editor.selectionForeground  = ui.editorSelectionForeground;
+    editor.inactiveSelectionBackground  = ui.editorInactiveSelectionBackground;
+    editor.selectionHighlightBackground  = ui.editorSelectionHighlightBackground;
+    editor.selectionHighlightBorder  = ui.editorSelectionHighlightBorder;
+
+    editor.wordHighlightBackground = ui.editorWordHighlightBackground;
+    editor.wordHighlightBorder = ui.editorWordHighlightBorder;
+    editor.wordHighlightStrongBackground = ui.editorWordHighlightStrongBackground;
+    editor.wordHighlightStrongBorder = ui.editorWordHighlightStrongBorder;
+    editor.wordHighlightTextBackground = ui.editorWordHighlightTextBackground;
+    editor.wordHighlightTextBorder = ui.editorWordHighlightTextBorder;
+
+    editor.findMatchBackground = ui.editorFindMatchBackground;
+    editor.findMatchForeground = ui.editorFindMatchForeground;
+    editor.findMatchHighlightForeground = ui.editorFindMatchHighlightForeground;
+    editor.findMatchHighlightBackground = ui.editorFindMatchHighlightBackground;
+    editor.findRangeHighlightBackground = ui.editorFindRangeHighlightBackground;
+    editor.findMatchBorder = ui.editorFindMatchBorder;
+    editor.findMatchHighlightBorder = ui.editorFindMatchHighlightBorder;
+    editor.findRangeHighlightBorder = ui.editorFindRangeHighlightBorder;
+
+    // searchEditor.findMatchBackground = ui.searchEditorFindMatchBackground;
+    // searchEditor.findMatchBorder = ui.searchEditorFindMatchBorder;
+    // searchEditor.textInputBorder = ui.searchEditorTextInputBorder;
+
+    editorWidget.foreground = ui.editorWidgetForeground;
+    editorWidget.background = ui.editorWidgetBackground;
+    editorWidget.border = ui.editorWidgetBorder;
+    editorSuggestWidget.background = ui.editorSuggestWidgetBackground;
+    editorSuggestWidget.foreground = ui.editorSuggestWidgetForeground;
+    editorSuggestWidget.selectedBackground = ui.editorSuggestWidgetSelectedBackground;
+    editorSuggestWidget.selectedForeground = ui.editorSuggestWidgetSelectedForeground;
+    editorSuggestWidget.selectedIconForeground = ui.editorSuggestWidgetSelectedIconForeground;
+    editorSuggestWidgetStatus.foreground = ui.editorSuggestWidgetStatusForeground;
+
+    // Tool-tips
+    editorHoverWidget.foreground = ui.editorHoverWidgetForeground;
+    editorHoverWidget.background = ui.editorHoverWidgetBackground;
+    editorHoverWidget.border = ui.editorHoverWidgetBorder;
+    editorHoverWidget.highlightForeground = ui.editorHoverWidgetHighlightForeground;
+    editorHoverWidget.statusBarBackground = ui.editorHoverWidgetStatusBarBackground;
+
+    editorGhostText.foreground = ui.editorGhostTextForeground;
+    editorBracketHighlight.foreground1 = brackets.pair1;
+    editorBracketHighlight.foreground2 = brackets.pair1;
+    editorBracketHighlight.foreground3 = brackets.pair3;
+    editorBracketHighlight.foreground4 = brackets.pair4;
+    editorBracketHighlight.foreground5 = brackets.pair5;
+    editorBracketHighlight.foreground6 = brackets.pair6;
+    editor.placeholder.foreground = ui.editorPlaceholderForeground;
+    editorGhostText.foreground = ui.editorGhostTextForeground;
+    editorBracketHighlight.unexpectedBracket.foreground = ui.editorBracketHighlightUnexpectedBracketForeground;
+    editorOverviewRuler.modifiedForeground = ui.editorOverviewRulerModifiedForeground;
+    editorOverviewRuler.addedForeground = ui.editorOverviewRulerAddedForeground;
+    editorOverviewRuler.deletedForeground = ui.editorOverviewRulerDeletedForeground;
+    editorOverviewRuler.errorForeground = ui.editorOverviewRulerErrorForeground;
+    editorOverviewRuler.warningForeground = ui.editorOverviewRulerWarningForeground;
+    editorOverviewRuler.infoForeground = ui.editorOverviewRulerInfoForeground;
+
+    editorInlayHint.foreground = ui.editorInlayHintForeground;
+    editorInlayHint.background = ui.editorInlayHintBackground;
+
+    // "editorInlayHint.parameterForeground" = ; //"#1c2619",
+    // "editorInfo.foreground" = ; //"#1c2619",
+    // "editorHint.foreground" = ; //"#1c2619",
+    // "editorHoverWidget.highlightForeground" = ; //"#1c2619",
+    // "symbolIcon.typeParameterForeground" = ; //"#1c2619",
+    // "editorGhostText.foreground" = ; //"#1c2619",
+
+    //     "editorBracketMatch.background" = ; //"#376b09",
+    //     "editorBracketMatch.foreground" = ; //"#61de42",
+    //     "editorBracketMatch.border" = ; //"#47890d",
+
+    //     "editorIndentGuide.background1" = ; //"#68BB7A20",
+    //     "editorIndentGuide.background2" = ; //"#57BC9C20",
+    //     "editorIndentGuide.background3" = ; //"#85AF6320",
+    //     "editorIndentGuide.background4" = ; //"#58A46820",
+    //     "editorIndentGuide.background5" = ; //"#4B886420",
+    //     "editorIndentGuide.background6" = ; //"#47890d20",
+    //     "editorIndentGuide.activeBackground1" = ; //"#68BB7A60",
+    //     "editorIndentGuide.activeBackground2" = ; //"#57BC9C60",
+    //     "editorIndentGuide.activeBackground3" = ; //"#85AF6360",
+    //     "editorIndentGuide.activeBackground4" = ; //"#58A46860",
+    //     "editorIndentGuide.activeBackground5" = ; //"#4B886460",
+    //     "editorIndentGuide.activeBackground6" = ; //"#47890d60",
+
+
+
+    //editorGutter.background = ui.editorGutterBackground;
+    editorGutter.modifiedBackground = ui.editorGutterModifiedBackground;
+    editorGutter.modifiedSecondaryBackground = ui.editorGutterModifiedSecondaryBackground;
+
+    editorGutter.addedBackground = ui.editorGutterAddedBackground;
+    editorGutter.addedSecondaryBackground = ui.editorGutterAddedSecondaryBackground;
+
+    //editorGutter.deletedBackground = ui.editorGutterDeletedBackground;
+    //editorGutter.deletedSecondaryBackground = ui.editorGutterDeletedSecondaryBackground;
+
+
+
+    editorGutter.commentRangeForeground = ui.editorGutterCommentRangeForeground;
+    editorGutter.commentGlyphForeground = ui.editorGutterCommentGlyphForeground;
+    editorGutter.commentUnresolvedGlyphForeground = ui.editorGutterCommentUnresolvedGlyphForeground;
+    editorGutter.foldingControlForeground = ui.editorGutterFoldingControlForeground;
+    editorGutter.itemGlyphForeground = ui.editorGutterItemGlyphForeground;
+    editorGutter.itemBackground = ui.editorGutterItemBackground;
+    editorGutter.commentDraftGlyphForeground = ui.editorGutterCommentDraftGlyphForeground;
+
+    peekView.border = ui.peekViewBorder;
+    peekViewEditor.background = ui.peekViewEditorBackground;
+    peekViewEditorGutter.background = ui.peekViewEditorGutterBackground;
+    // peekViewEditor.matchHighlightBackground = ;
+    // peekViewEditor.matchHighlightBorder = ;
+    peekViewTitle.background = ui.peekViewTitleBackground;
+    peekViewTitleDescription.foreground = ui.peekViewTitleDescriptionForeground;
+    peekViewTitleLabel.foreground = ui.peekViewTitleLabelForeground;
+
+
+
+    //
+    // Debug
+    //
+
+    debugToolBar.background = ui.debugToolBarBackground;
+    debugToolBar.border = ui.debugToolBarBorder;
+    debugIcon.breakpointForeground = ui.debugIconBreakpointForeground;
+
+
+
+    //
+    // Panel
+    //
+
+    panel.background =  panel.background;
+    panel.border = panel.border;
+    panel.dropBorder = panel.dropBorder;
+    panelSection.border = panel.sectionBorder;
+    panelSection.dropBackground = panel.sectionDropBackground;
+    panelSectionHeader.background = panel.sectionHeaderBackground;
+    panelStickyScroll.background = panel.stickyScrollBackground;
+    panelStickyScroll.shadow = panel.stickyScrollShadow;
+    panelTitle.activeBorder = panel.titleActiveForeground;
+    panelTitle.activeForeground = panel.titleActiveForeground;
+    panelTitle.inactiveForeground = panel.titleInactiveForeground;
+    panelTitleBadge.background = panel.titleBadgeBackground;
+    panelTitleBadge.foreground = panel.titleBadgeForeground;
+
+    problemsErrorIcon.foreground = ui.problemsErrorIconForeground;
+    problemsWarningIcon.foreground = ui.problemsWarningIconForeground;
+    problemsInfoIcon.foreground = ui.problemsInfoIconForeground;
+
+
+
+    //
+    // Testing
+    //
+
+    // TODO = These colors are derived from something (list colors?)
+    // if they are not specified here. Find out how that works.
+
+    testing.runAction = ui.testingRunAction;
+    testing.iconErrored = ui.testingIconErrored;
+    testing.iconErrored.retired =  ui.testingIconErroredRetired;
+    testing.iconFailed = ui.testingIconFailed;
+    testing.iconFailed.retired = ui.testingIconFailedRetired;
+    testing.iconPassed = ui.testingIconPassed;
+    testing.iconPassed.retired = ui.testingIconPassedRetired;
+    testing.iconQueued = ui.testingIconQueued;
+    testing.iconQueued.retired = ui.testingIconQueuedRetired;
+    testing.iconSkipped = ui.testingIconSkipped;
+    testing.iconSkipped.retired = ui.testingIconSkippedRetired;
+    testing.iconUnset = ui.testingIconUnset;
+    testing.iconUnset.retired = ui.testingIconUnsetRetired;
+
+    testing.peekHeaderBackground = ui.testingPeekHeaderBackground;
+    testing.peekBorder = ui.testingPeekBorder;
+
+    // testing.message.error.lineBackground = #aa0055;
+    // testing.message.info.lineBackground = #aa0055;
+    // testing.messagePeekHeaderBackground = #aa0055;
+
+    testing.message.error.badgeBorder = ui.testingMessageErrorBadgeBorder;
+    testing.message.error.badgeBackground = ui.testingMessageErrorBadgeBackground;
+    testing.message.error.badgeForeground = ui.testingMessageErrorBadgeForeground;
+
+    //
+    // Synbols
+    //
+
+    symbolIcon.arrayForeground = symbol.array; //The foreground color for array symbols.
+    symbolIcon.booleanForeground = symbol.boolean; //The foreground color for boolean symbols.
+    symbolIcon.classForeground = symbol.class; //The foreground color for class symbols.
+    // symbolIcon.colorForeground = symbol.color; //The foreground color for color symbols.
+    symbolIcon.constantForeground = symbol.constant; //The foreground color for constant symbols.
+    symbolIcon.constructorForeground = symbol.constructor; //The foreground color for constructor symbols.
+    symbolIcon.enumeratorForeground = symbol.enumerator; //The foreground color for enumerator symbols.
+    symbolIcon.enumeratorMemberForeground = symbol.enumeratorMember; //The foreground color for enumerator member symbols.
+    symbolIcon.eventForeground = symbol.event; //The foreground color for event symbols.
+    symbolIcon.fieldForeground = symbol.field; //The foreground color for field symbols.
+    symbolIcon.fileForeground = symbol.file; //The foreground color for file symbols.
+    symbolIcon.folderForeground = symbol.folder; //The foreground color for folder symbols.
+    symbolIcon.functionForeground = symbol.function; //The foreground color for function symbols.
+    symbolIcon.interfaceForeground = symbol.interface; //The foreground color for interface symbols.
+    symbolIcon.keyForeground = symbol.key; //The foreground color for key symbols.
+    symbolIcon.keywordForeground = symbol.keyword; //The foreground color for keyword symbols.
+    symbolIcon.methodForeground = symbol.method; //The foreground color for method symbols.
+    symbolIcon.moduleForeground = symbol.module; //The foreground color for module symbols.
+    symbolIcon.namespaceForeground = symbol.namespace; //The foreground color for namespace symbols.
+    symbolIcon.nullForeground = symbol.null; //The foreground color for null symbols.
+    symbolIcon.numberForeground = symbol.number; //The foreground color for number symbols.
+    symbolIcon.objectForeground = symbol.object; //The foreground color for object symbols.
+    symbolIcon.operatorForeground = symbol.operator; //The foreground color for operator symbols.
+    symbolIcon.packageForeground = symbol.package; //The foreground color for package symbols.
+    symbolIcon.propertyForeground = symbol.property; //The foreground color for property symbols.
+    symbolIcon.referenceForeground = symbol.reference; //The foreground color for reference symbols.
+    symbolIcon.snippetForeground = symbol.snippet; //The foreground color for snippet symbols.
+    symbolIcon.stringForeground = symbol.string; //The foreground color for string symbols.
+    symbolIcon.structForeground = symbol.struct; //The foreground color for struct symbols.
+    symbolIcon.textForeground = symbol.text; //The foreground color for text symbols.
+    symbolIcon.typeParameterForeground = symbol.typeParameter; //The foreground color for type parameter symbols.
+    symbolIcon.unitForeground = symbol.unit; //The foreground color for unit symbols.
+    symbolIcon.variableForeground = symbol.variable; //The foreground color for variable symbols.
+
+    // The terminal background is given a color with zero opacity so that
+    // the terminal's background color is not rendered. The avoids a color
+    // mismatch between the terminal background an the panel background
+    // for some colors which appears to be the result of a rounding error
+    // in the terminal renering pipeline.
+    terminal.background = #00000000;
+
+    terminal.border = terminal.border; //The color of the border that separates split panes within the terminal. This defaults to panel.border.
+    terminal.foreground = terminal.foreground; //The default foreground color of the Integrated Terminal.
+    terminal.ansiBlack = terminal.black; //'Black' ANSI color in the terminal.
+    terminal.ansiBlue = terminal.blue; //'Blue' ANSI color in the terminal.
+    terminal.ansiBrightBlack = terminal.brightBlack; //'BrightBlack' ANSI color in the terminal.
+    terminal.ansiBrightBlue = terminal.brightBlue; //'BrightBlue' ANSI color in the terminal.
+    terminal.ansiBrightCyan = terminal.brightCyan; //'BrightCyan' ANSI color in the terminal.
+    terminal.ansiBrightGreen = terminal.brightGreen; //'BrightGreen' ANSI color in the terminal.
+    terminal.ansiBrightMagenta = terminal.brightMagenta; //'BrightMagenta' ANSI color in the terminal.
+    terminal.ansiBrightRed = terminal.brightRed; //'BrightRed' ANSI color in the terminal.
+    terminal.ansiBrightWhite = terminal.brightWhite; //'BrightWhite' ANSI color in the terminal.
+    terminal.ansiBrightYellow = terminal.brightYellow; //'BrightYellow' ANSI color in the terminal.
+    terminal.ansiCyan = terminal.cyan; //'Cyan' ANSI color in the terminal.
+    terminal.ansiGreen = terminal.green; //'Green' ANSI color in the terminal.
+    terminal.ansiMagenta = terminal.magenta; //'Magenta' ANSI color in the terminal.
+    terminal.ansiRed = terminal.red; //'Red' ANSI color in the terminal.
+    terminal.ansiWhite = terminal.white; //'White' ANSI color in the terminal.
+    terminal.ansiYellow = terminal.yellow; //'Yellow' ANSI color in the terminal.
+
+    terminal.selectionBackground = terminal.selectionBackground; //The selection background color of the terminal.
+    terminal.selectionForeground = terminal.selectionForeground; //The selection foreground color of the terminal. When this is null the selection foreground will be retained and have the minimum contrast ratio feature applied.
+    terminal.inactiveSelectionBackground = terminal.inactiveSelectionBackground; //The selection background color of the terminal when it does not have focus.
+    terminal.findMatchBackground = terminal.findMatchBackground; //Color of the current search match in the terminal. The color must not be opaque so as not to hide underlying terminal content.
+    terminal.findMatchBorder = terminal.findMatchBorder; //Border color of the current search match in the terminal.
+    terminal.findMatchHighlightBackground = terminal.findMatchHighlightBackground; //Color of the other search matches in the terminal. The color must not be opaque so as not to hide underlying terminal content.
+    terminal.findMatchHighlightBorder = terminal.findMatchHighlightBorder; //Border color of the other search matches in the terminal.
+    terminal.hoverHighlightBackground = terminal.hoverHighlightBackground; //Color of the highlight when hovering a link in the terminal.
+    terminalCursor.background = terminal.cursorBackground; //The background color of the terminal cursor. Allows customizing the color of a character overlapped by a block cursor.
+    terminalCursor.foreground = terminal.cursorForeground; //The foreground color of the terminal cursor.
+    terminal.dropBackground = terminal.dropBackground; //The background color when dragging on top of terminals. The color should have transparency so that the terminal contents can still shine through.
+    terminal.tab.activeBorder = terminal.tabActiveBorder; //Border on the side of the terminal tab in the panel. This defaults to tab.activeBorder.
+
+    // terminalCommandDecoration.defaultBackground = ; //The default terminal command decoration background color.
+    // terminalCommandDecoration.successBackground = ; //The terminal command decoration background color for successful commands.
+    // terminalCommandDecoration.errorBackground = ; //The terminal command decoration background color for error commands.
+    // terminalOverviewRuler.cursorForeground = ; //The overview ruler cursor color.
+    // terminalOverviewRuler.findMatchForeground = ; //Overview ruler marker color for find matches in the terminal.
+    // terminalStickyScroll.background = ; //The background color of the sticky scroll overlay in the terminal.
+    // terminalStickyScroll.border = ; //The border of the sticky scroll overlay in the terminal.
+    // terminalStickyScrollHover.background = ; //The background color of the sticky scroll overlay in the terminal when hovered.
+    // terminal.initialHintForeground = ; //Foreground color of the terminal initial hint.
+    // terminalOverviewRuler.border = ; //The overview ruler left-side border color.
+    // terminalCommandGuide.foreground = ; //The foreground color of the terminal command guide that appears to the left of a command and its output on hover.
+
+    // terminalSymbolIcon.aliasForeground = ; //The foreground color for an alias icon. These icons will appear in the terminal suggest widget
+    // terminalSymbolIcon.branchForeground = ; //The foreground color for a branch icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.commitForeground = ; //The foreground color for a commit icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.flagForeground = ; //The foreground color for an flag icon. These icons will appear in the terminal suggest widget
+    // terminalSymbolIcon.optionForeground = ; //The foreground color for an option icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.optionValueForeground = ; //The foreground color for an enum member icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.methodForeground = ; //The foreground color for a method icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.argumentForeground = ; //The foreground color for an argument icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.inlineSuggestionForeground = ; //The foreground color for an inline suggestion icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.fileForeground = ; //The foreground color for a file icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.folderForeground = ; //The foreground color for a folder icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.pullRequestDoneForeground = ; //The foreground color for a completed pull request icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.pullRequestForeground = ; //The foreground color for a pull request icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.remoteForeground = ; //The foreground color for a remote icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.stashForeground = ; //The foreground color for a stash icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.symbolText = ; //The foreground color for a plaintext suggestion. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.symbolicLinkFileForeground = ; //The foreground color for a symbolic link file icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.symbolicLinkFolderForeground = ; //The foreground color for a symbolic link folder icon. These icons will appear in the terminal suggest widget.
+    // terminalSymbolIcon.tagForeground = ; //The foreground color for a tag icon. These icons will appear in the terminal suggest widget.
+
+
+    //
+    // SCM
+    //
+
+    gitDecoration.untrackedResourceForeground = scm.resourceUntrackedForeground;
+    gitDecoration.modifiedResourceForeground = scm.resourceModifiedForeground;
+    gitDecoration.ignoredResourceForeground = scm.resourceIgnoredForeground;
+    scmGraph.foreground1 = scm.graphForeground1;
+    scmGraph.foreground2 = scm.graphForeground2;
+    scmGraph.foreground3 = scm.graphForeground3;
+    scmGraph.foreground4 = scm.graphForeground4;
+    scmGraph.foreground5 = scm.graphForeground5;
+    scmGraph.historyItemRefColor = scm.graphHistoryItemRefColor;
+    scmGraph.historyItemRemoteRefColor = scm.graphHistoryItemRemoteRefColor;
+    scmGraph.historyItemBaseRefColor = scm.graphHistoryItemBaseRefColor;
+
+
+    //
+    // Debug
+    //
+
+    debugIcon.startForeground = debug.startForeground;
+    debugIcon.pauseForeground = debug.pauseForeground;
+    debugIcon.stopForeground = debug.stopForeground;
+    debugIcon.disconnectForeground = debug.disconnectForeground;
+    debugIcon.restartForeground = debug.restartForeground;
+    debugIcon.stepOverForeground = debug.stepOverForeground;
+    debugIcon.stepIntoForeground = debug.stepIntoForeground;
+    debugIcon.stepOutForeground = debug.stepOutForeground;
+    debugIcon.continueForeground = debug.continueForeground;
+    debugIcon.stepBackForeground = debug.stepBackForeground;
+};
+
+Palette vscode-syntax = {
+    annotation = symbol.variable;
+    character = symbol.string;
+    comment = lang.comment;
+    constant = symbol.constant;
+    identifier = symbol.number;
+    keyword = symbol.keyword;
+    modifier = lang.modifier;
+    method = symbol.method;
+    namespace = symbol.namespace;
+    number = symbol.number;
+    operator = symbol.operator;
+    other = symbol.text;
+    primitive_type = symbol.class;
+    reference_type = symbol.class;
+    regex = lang.regex;
+    string = symbol.string;
+    variable = symbol.variable;
+    yaml_name = symbol.key;
+    yaml_value = symbol.string;
+    yaml_punctuation = lang.punctuation;
+};
+

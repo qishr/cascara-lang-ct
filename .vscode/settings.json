@@ -1,0 +1,13 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+
+    // "workbench.colorCustomizations": {
+    //     "activityBar.background": "#f00",
+    //     "titleBar.activeBackground": "#f00",
+    //     "statusBar.background": "#f00"
+    //   }
+
+    "workbench.colorTheme": "Cascara Retro Green on Bright Beige"
+
+}

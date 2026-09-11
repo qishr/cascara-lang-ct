@@ -1,0 +1,121 @@
+plugins {
+    id "io.github.qishr.cascara-meta.java-app" version "0.1.0"
+    id 'org.graalvm.buildtools.native' version '0.10.2'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation(platform("io.github.qishr:cascara-meta-bom:0.1.21"))
+
+    // JUnit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Cascara
+    implementation "io.github.qishr:cascara-common"
+    implementation "io.github.qishr:cascara-common-io"
+
+    implementation(project(":ct-dsl"))
+}
+
+
+application {
+    // Define the main class for the application.
+    mainClass = 'io.github.qishr.cascara.lang.ct.exec.CtRunner'
+}
+
+
+run {
+    mainClass = 'io.github.qishr.cascara.lang.ct.exec.CtRunner'
+
+    // args = [
+    //     "${rootDir}/example.ct",
+    //     "-v",
+    //     "-f", "test",
+    //     "-o", "${rootDir}/build/output.json"
+    // ]
+
+    // args = [
+    //     "${rootDir}/problem.ct",
+    //     "-v",
+    //     "-f", "test",
+    //     "-o", "${rootDir}/build/output.json"
+    // ]
+
+    // args = [
+    //     "${rootDir}/example.ct",
+    //     "-v",
+    //     "-f", "iterm2",
+    //     "-o", "${rootDir}/build/output.json"
+    // ]
+
+    args = [
+        "${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-dull-beige.ct",
+        // "-v",
+        "-f", "ghostty",
+        "-o", "${rootDir}/build/ghostty-amber.conf"
+    ]
+
+    // args = [
+    //     "${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-dull-beige.ct",
+    //     // "-v",
+    //     "-f", "iterm2",
+    //     "-o", "${rootDir}/build/iterm2-amber.itermcolors"
+    // ]
+
+    // args = [
+    //     // project.file("${rootDir}/ct-gradle-example/src/main/ct/retro-green-on-heavy-metal.ct").absolutePath,
+    //     // project.file("${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-heavy-metal.ct").absolutePath,
+    //     project.file("${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-dull-beige.ct").absolutePath,
+    //     // "-v",
+    //     // "-f", "vscode-ui,vscode-syntax",
+    //     "-f", "vscode",
+    //     "-o", "${rootDir}/build/output.json"
+    // ]
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+tasks.withType(Javadoc).configureEach {
+    options.addStringOption('Xdoclint:-missing', '-quiet')
+}
+
+graalvmNative {
+    binaries.all {
+        resources.autodetect()
+    }
+    toolchainDetection = false
+}
+
+graalvmNative {
+    binaries {
+        main {
+            imageName = 'ct'
+            mainClass = 'io.github.qishr.cascara.lang.ct.exec.CtRunner'
+
+            // Helpful build flags for CLI binaries
+            buildArgs.addAll([
+                '--no-fallback',                  // Fail build if standard JVM image is required
+                '--enable-url-protocols=http,https', // If fetching remote resources
+                '-H:+ReportExceptionStackTraces',
+                '-Ob',
+                '-H:IncludeResources=.*\\.ct$',
+                '-H:IncludeResources=.*\\.json$',
+                '-H:+GenerateEmbeddedResourcesFile'
+            ])
+        }
+    }
+}

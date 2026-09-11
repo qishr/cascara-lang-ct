@@ -1,0 +1,62 @@
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.brightness;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.hsbaLerp;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgbaLerp;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgb;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgba;
+
+Color green = #00ff84;
+
+// n = green.green;
+
+Properties vscode-properties = {
+    // name = "Example Theme";
+    String name = "Example Theme";
+    type = "dark";
+};
+
+//include "res://iterm2.ct";
+// Palette iterm2 = {
+//     green = green;
+// };
+
+String s = "sss";
+
+// if no type is specified, it is a color
+blue = rgba(0,0,150,1);
+
+// an empty palette
+Palette base;
+
+base.red = rgb(255,0,0);
+
+// palettes can be declared with colors in them
+Palette mixed = {
+    brightBlue = brightness(blue, +50%);
+    yellow = hsbaLerp(green, base.red, 0.5);
+};
+
+// colors can be added to palettes arbitrarily
+mixed.orangeRed = hsbaLerp(mixed.yellow, base.red, 0.5);
+
+// transforms can be applied to palettes
+Palette darkMixed = brightness(mixed, -20%);
+
+Palette app;
+
+app.appBackground = darkMixed.yellow;
+app.activityBarBackground = base.red;
+app.sideBarBackkground = mixed.brightBlue;
+app.foreground = mixed.yellow;
+
+Palette defaultTheme = {
+    string = mixed.orangeRed;
+    comment = mixed.yellow;
+};
+
+// transforms can be applied to themes
+Palette vscode-syntax = rgbaLerp(defaultTheme, green, 0.45);
+
+Format test = {{{
+    comment: "%vscode-syntax.comment%"
+}}};
+

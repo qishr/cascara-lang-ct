@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Experimental",
+            "request": "launch",
+            "mainClass": "io.github.qishr.cascara.lang.ct.exec.CtRunner",
+            "projectName": "colors",
+            "args": [
+                "${workspaceFolder}/theme/"
+            ]
+        },
+    ]
+}

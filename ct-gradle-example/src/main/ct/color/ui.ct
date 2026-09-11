@@ -1,0 +1,600 @@
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgb;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.hsbaLerp;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.rgbaLerp;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.changeHue;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.greyscale;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.translucent;
+import io.github.qishr.cascara.lang.ct.util.ColorTransform.brightness;
+
+Palette lang = rgbaLerp(baseLang, textForeground, 0.65);
+Palette graph = rgbaLerp(baseGraph, textForeground, 0.8);
+
+Palette uiCommon = {
+    primary0 = textForeground;                   // Text in editor
+    primary1 = brightness(textForeground, 0.75);
+    primary2 = brightness(textForeground, 0.60); // Button foreground
+    primary3 = brightness(textForeground, 0.56);
+    primary4 = brightness(textForeground, 0.54);
+    primary5 = brightness(textForeground, 0.48);
+    primary6 = brightness(textForeground, 0.44);
+    primary7 = brightness(textForeground, 0.40);
+    primary8 = brightness(textForeground, 0.30);
+    primary9 = brightness(textForeground, 0.22); // placeholders
+
+    textBackground = textBackground;                            // Document
+    lightTextBackground = brightness(textBackground, +0.016);   // Sidebars / Panels
+    lighterTextBackground = brightness(textBackground, +0.04);  // Selected Activity
+    lightestTextBackground = brightness(textBackground, +0.06); // Sidebar Title
+    selectionBackground = translucent(uiCommon.primary0);
+    controlBackground = brightness(textBackground, +0.08);
+
+    window = window;
+
+    // #1d4713;
+    statusModified = uiCommon.primary8;
+
+    statusDeleted = #402846;
+    statusError = #e25407;
+    statusWarning = #d7b04d;
+    statusInfo = #367cbd;
+};
+
+Palette brackets = {
+    pair1 = #68BB7A;
+    pair2 = #57BC9C;
+    pair3 = #85AF63;
+    pair4 = #58A468;
+    pair5 = #4B8864;
+    pair6 = #47890d;
+};
+
+Palette symbol = {
+    array = lang.variableName;
+    boolean = lang.numericalValue;
+    class = lang.typeName;
+    constant = lang.constantName;
+    constructor = lang.method;
+    enumerator = lang.objectName;
+    enumeratorMember = lang.variableName;
+    event = lang.objectName;
+    field = lang.variableName;
+    file = lang.objectName;
+    folder = lang.objectName;
+    function = lang.method;
+    interface = lang.typeName;
+    key = lang.variableName;
+    keyword = lang.keyword;
+    method = lang.method;
+    module = lang.module;
+    namespace = lang.namespace;
+    null = lang.keyword;
+    number = lang.numericalValue;
+    object = lang.objectName;
+    operator = lang.operator;
+    package = lang.namespace;
+    property = lang.variableName;
+    reference = lang.objectName;
+    snippet = lang.comment;
+    string = lang.textualValue;
+    struct = lang.objectName;
+    text = lang.textualValue;
+    typeParameter = lang.variableName;
+    unit = lang.module;
+    variable = lang.variableName;
+};
+
+Palette ui = {
+    focusBorder = uiCommon.primary1;
+    iconForeground = uiCommon.primary2;
+    foreground = uiCommon.primary3; // This also affects tabs in Modern UI
+    textLinkForeground = uiCommon.primary2; // This also affects tabs in Modern UI
+    errorForeground = uiCommon.statusError;
+
+
+    //
+    // Title Bar
+    //
+
+    titleBarActiveBackground = uiCommon.window;
+    titleBarInactiveBackground = uiCommon.window;
+    titleBarActiveForeground = uiCommon.primary3;
+    toolbarHoverBackground = rgbaLerp(uiCommon.controlBackground, uiCommon.primary0, 0.4);
+    toolbarActiveBackground = rgbaLerp(uiCommon.controlBackground, uiCommon.textBackground, 0.2);
+
+    //
+    // Status Bar
+    //
+
+    statusBarDebuggingForeground = uiCommon.primary2;
+    statusBarForeground = uiCommon.primary2;
+    statusBarItemRemoteForeground = uiCommon.primary2;
+    statusBarItemRemoteHoverForeground = uiCommon.primary2;
+    statusBarItemHoverForeground = uiCommon.primary2;
+    statusBarItemProminentForeground = uiCommon.primary2;
+    statusBarItemProminentHoverForeground = uiCommon.primary2;
+
+    statusBarBackground = uiCommon.window;
+    statusBarDebuggingBackground = uiCommon.window;
+    statusBarItemRemoteBackground = uiCommon.textBackground;
+    statusBarItemRemoteHoverBackground = uiCommon.primary8;
+    statusBarItemHoverBackground = uiCommon.primary8;
+    statusBarNoFolderBackground = uiCommon.window;
+    statusBarItemProminentBackground = uiCommon.primary8;
+    statusBarItemProminentHoverBackground = uiCommon.primary8;
+
+    //
+    // Command Center
+    //
+
+    commandCenterActiveBackground = uiCommon.primary8;
+    commandCenterActiveBorder = uiCommon.primary4;
+    commandCenterActiveForeground = uiCommon.primary3;
+    commandCenterBackground = uiCommon.primary8;
+    commandCenterBorder = #e0caa933;
+    commandCenterDebuggingBackground = uiCommon.lighterTextBackground;
+    commandCenterForeground = uiCommon.primary3;
+    commandCenterInactiveBorder = #e0caa926; // TODO
+    commandCenterInactiveForeground = uiCommon.primary3;
+
+    //
+    // Activity Bar
+    //
+
+    badgeBackground = translucent(uiCommon.primary8);
+    badgeForeground = uiCommon.primary4;
+    activityBarActiveBackground = uiCommon.lighterTextBackground;
+    activityBarBadgeBackground = translucent(uiCommon.primary8);
+    activityBarBackground = uiCommon.lightTextBackground;
+    activityBarInactiveForeground = uiCommon.primary8;
+    activityBarForeground = uiCommon.primary3;
+    activityBarActiveBorder = uiCommon.lighterTextBackground;
+    activityBarBadgeForeground = uiCommon.primary4;
+    activityWarningBadgeBackground = uiCommon.primary8;
+    activityWarningBadgeForeground = uiCommon.primary4;
+    activityErrorBadgeBackground = uiCommon.primary8;
+    activityErrorBadgeForeground = uiCommon.primary4;
+    activityBarTopInactiveForeground = uiCommon.primary8;
+    activityBarTopActiveBackground = uiCommon.lighterTextBackground;
+    activityBarTopForeground = uiCommon.primary4;
+    activityBarTopActiveBorder = uiCommon.lighterTextBackground;
+    activityBarTopDropBorder = uiCommon.lighterTextBackground;
+
+    //
+    // Sidebar
+    //
+
+    sideBarBackground = uiCommon.lightTextBackground;
+    sideBarForeground = uiCommon.primary6;
+    sideBarDropBackground = translucent(uiCommon.statusDeleted);
+    sideBarBorder = uiCommon.window;
+    sideBarTitleForeground = uiCommon.primary4;
+    sideBarTitleBackground = uiCommon.lighterTextBackground;
+    sideBarSectionHeaderBackground = uiCommon.lighterTextBackground;
+    sideBarSectionHeaderForeground = uiCommon.primary4;
+    sideBarSectionHeaderBorder = uiCommon.primary4;
+
+
+
+    //
+    // Lists
+    //
+
+    list.FocusBackground = uiCommon.lightestTextBackground;
+    listFocusForeground = uiCommon.primary3;
+    listFocusOutline = uiCommon.primary4;
+    listFocusAndSelectionOutline = uiCommon.primary4;
+
+    listFocusHighlightForeground = uiCommon.primary0;
+    listHighlightForeground = uiCommon.primary0;
+
+    listWarningForeground = uiCommon.primary1;
+    listDeemphasizedForeground = uiCommon.primary7;
+    listInvalidItemForeground = uiCommon.primary7;
+    listErrorForeground = uiCommon.statusError;
+    listFocusBackground = uiCommon.lightestTextBackground;
+    listActiveSelectionBackground = uiCommon.lightestTextBackground;
+    listActiveSelectionForeground = uiCommon.primary2;
+    listInactiveSelectionBackground = uiCommon.lightestTextBackground;
+    listInactiveSelectionForeground = uiCommon.primary4;
+    listFilterMatchBackground = translucent(uiCommon.primary4);
+    listHoverBackground = uiCommon.lighterTextBackground;
+    treeIndentGuidesStroke = uiCommon.primary9;
+    treeInactiveIndentGuidesStroke = uiCommon.primary9;
+    listActiveSelectionIconForeground = uiCommon.primary4;
+    listInactiveSelectionIconForeground = uiCommon.primary4;
+
+
+    //
+    // Widgets and Inputs
+    //
+
+    widgetShadow = translucent(uiCommon.primary9);
+    widgetBorder = uiCommon.window;
+
+    inputValidationErrorBackground =  translucent(uiCommon.statusError);
+
+    inputBackground = uiCommon.textBackground;
+    inputPlaceholderForeground = uiCommon.primary9;
+    inputBorder = uiCommon.primary8;
+    inputForeground = uiCommon.primary5;
+
+    dropdownListBackground = uiCommon.lightTextBackground;
+    dropdownBackground = uiCommon.lighterTextBackground;
+    dropdownBorder = uiCommon.primary7;
+    dropdownForeground = uiCommon.primary1;
+
+    buttonBackground = uiCommon.controlBackground;
+    buttonForeground = uiCommon.primary2;
+
+
+
+    //
+    // Menu
+    //
+
+    menuBackground = uiCommon.lightTextBackground;
+    menuForeground = uiCommon.primary1;
+    menuBorder = uiCommon.primary7;
+    menuSelectionForeground = uiCommon.primary1;
+    menuSelectionBackground = uiCommon.lighterTextBackground;
+    menuSelectionBorder = uiCommon.primary1;
+    menuSeparatorBackground = uiCommon.primary6;
+    menubarSelectionBackground = uiCommon.lighterTextBackground;
+    menubarSelectionForeground = uiCommon.primary1;
+
+
+
+    //
+    // Scrolling
+    //
+
+    scrollbarShadow = uiCommon.lighterTextBackground;
+    scrollbarSliderActiveBackground = uiCommon.lighterTextBackground;
+    scrollbarSliderBackground = translucent(uiCommon.primary8);
+    scrollbarSliderHoverBackground = uiCommon.primary8;
+
+
+
+    //
+    // Tabs
+    //
+
+    tabActiveBackground = uiCommon.lightestTextBackground;
+    tabActiveForeground = uiCommon.primary4;
+    tabInactiveBackground = uiCommon.textBackground;
+    tabInactiveForeground = uiCommon.primary6;
+    tabSelectedBorderTop = uiCommon.primary4;
+    tabActiveBorder = uiCommon.textBackground;
+    tabSelectedBackground = uiCommon.lightestTextBackground;
+    tabSelectedForeground = uiCommon.primary4;
+
+    tabActiveModifiedBorder = uiCommon.textBackground;
+    tabBorder = uiCommon.textBackground;
+    tabDragAndDropBorder = uiCommon.primary0;
+    tabInactiveModifiedBorder = uiCommon.textBackground;
+    tabLastPinnedBorder = uiCommon.textBackground;
+    tabUnfocusedActiveBackground = uiCommon.lightestTextBackground;
+    tabUnfocusedActiveForeground = uiCommon.primary4;
+    tabUnfocusedActiveModifiedBorder = uiCommon.textBackground;
+    tabUnfocusedInactiveBackground = uiCommon.textBackground;
+    tabUnfocusedInactiveForeground = uiCommon.primary6;
+    tabUnfocusedInactiveModifiedBorder = uiCommon.textBackground;
+    editorGroupHeaderNoTabsBackground = uiCommon.textBackground;
+    editorGroupHeaderTabsBackground = uiCommon.textBackground;
+
+
+
+    //
+    // Welcome Page
+    //
+
+    welcomePageTileBackground = uiCommon.lighterTextBackground;
+    welcomePageProgressForeground = uiCommon.primary4;
+    welcomePageBackground = uiCommon.textBackground;
+    // TODO = There are other welcome page parameters
+
+
+
+    //
+    // Editor
+    //
+
+    breadcrumbForeground = uiCommon.primary7;
+    breadcrumbBackground = uiCommon.textBackground;
+    breadcrumbFocusForeground = uiCommon.primary1;
+    breadcrumbActiveSelectionForeground = uiCommon.primary1;
+    breadcrumbPickerBackground = uiCommon.lighterTextBackground;
+
+    minimapErrorHighlight = uiCommon.statusError;
+
+    editorErrorForeground = uiCommon.statusError;
+    editorForeground = uiCommon.primary0;
+    editorBackground = uiCommon.textBackground;
+    editorLineNumberForeground = uiCommon.primary8;
+    editorLineNumberActiveForeground = uiCommon.primary5;
+
+    editorLineHighlightBackground = uiCommon.lighterTextBackground;
+    editorInactiveLineHighlightBackground = uiCommon.lightTextBackground;
+    editorLineHighlightBorder = uiCommon.lighterTextBackground;
+
+    editorSelectionBackground  = uiCommon.primary8;
+    editorSelectionForeground  = uiCommon.primary0;
+
+    editorInactiveSelectionBackground  = uiCommon.primary9;
+    editorSelectionHighlightBackground  = translucent(uiCommon.primary1);
+    editorSelectionHighlightBorder  = uiCommon.primary0;
+
+    // TODO: Use a different opacity level and a brighter color for these backgrounds:
+    editorWordHighlightBackground = translucent(uiCommon.lightestTextBackground);
+    editorWordHighlightBorder = uiCommon.lightestTextBackground;
+    editorWordHighlightStrongBackground = translucent(uiCommon.lightestTextBackground);
+    editorWordHighlightStrongBorder = uiCommon.lightestTextBackground;
+    editorWordHighlightTextBackground = #555500; //translucent(uiCommon.lightestTextBackground);
+    editorWordHighlightTextBorder = uiCommon.lightestTextBackground;
+
+    editorFindMatchBackground = #550055; //translucent(uiCommon.primary6);
+    editorFindMatchForeground = uiCommon.primary0;
+    editorFindMatchBorder = uiCommon.primary3;
+    editorFindMatchHighlightForeground = uiCommon.primary0;
+    editorFindMatchHighlightBackground = translucent(uiCommon.primary9);
+    editorFindRangeHighlightBackground = translucent(uiCommon.primary9);
+    editorFindMatchHighlightBorder = uiCommon.primary3;
+    editorFindRangeHighlightBorder = translucent(uiCommon.primary7);
+
+    // searchEditorFindMatchBackground = #550000; //translucent(uiCommon.primary4);
+    // searchEditorFindMatchBorder = uiCommon.primary3;
+    // TODO: searchEditorTextInputBorder =
+
+    editorWidgetForeground = uiCommon.primary5;
+    editorWidgetBackground = uiCommon.lightTextBackground;
+    editorWidgetBorder = uiCommon.primary8;
+    editorSuggestWidgetBackground = uiCommon.lightTextBackground;
+    editorSuggestWidgetForeground = uiCommon.primary4;
+    editorSuggestWidgetSelectedBackground = uiCommon.primary8;
+    editorSuggestWidgetSelectedForeground = uiCommon.primary0;
+    editorSuggestWidgetSelectedIconForeground = uiCommon.primary4;
+    editorSuggestWidgetStatusForeground = uiCommon.primary6;
+
+    // Tool-tips
+    editorHoverWidgetForeground = uiCommon.primary4;
+    editorHoverWidgetBackground = uiCommon.lighterTextBackground;
+    editorHoverWidgetBorder = uiCommon.window; //uiCommon.primary8;
+    editorHoverWidgetHighlightForeground = uiCommon.primary0;
+    editorHoverWidgetStatusBarBackground = uiCommon.lightestTextBackground;
+
+    editorGhostTextForeground = uiCommon.primary8;
+    editorBracketHighlightForeground1 = brackets.pair1;
+    editorBracketHighlightForeground2 = brackets.pair2;
+    editorBracketHighlightForeground3 = brackets.pair3;
+    editorBracketHighlightForeground4 = brackets.pair4;
+    editorBracketHighlightForeground5 = brackets.pair5;
+    editorBracketHighlightForeground6 = brackets.pair6;
+    editorPlaceholderForeground = uiCommon.primary6;
+    editorGhostTextForeground = uiCommon.primary6;
+    editorBracketHighlightUnexpectedBracketForeground = uiCommon.statusWarning;
+    editorOverviewRulerModifiedForeground = uiCommon.statusModified;
+    editorOverviewRulerAddedForeground = uiCommon.statusModified;
+    editorOverviewRulerDeletedForeground = uiCommon.statusDeleted;
+    editorOverviewRulerErrorForeground = uiCommon.statusError;
+    editorOverviewRulerWarningForeground = translucent(uiCommon.statusWarning);
+    editorOverviewRulerInfoForeground = translucent(uiCommon.statusInfo);
+    editorInlayHintForeground = uiCommon.primary8;
+    editorInlayHintBackground = translucent(uiCommon.lightestTextBackground);
+
+    editorGutterBackground = uiCommon.textBackground;
+    editorGutterModifiedBackground = uiCommon.statusModified;
+    editorGutterModifiedSecondaryBackground = uiCommon.statusModified;
+    editorGutterAddedBackground = uiCommon.statusModified;
+    editorGutterAddedSecondaryBackground = uiCommon.statusModified;
+    editorGutterDeletedBackground = uiCommon.statusDeleted;
+    editorGutterDeletedSecondaryBackground = uiCommon.textBackground;
+
+
+    // TODO:
+    editorGutterCommentRangeForeground = #009999;
+    editorGutterCommentGlyphForeground = #009999;
+    editorGutterCommentUnresolvedGlyphForeground = #009999;
+    editorGutterCommentDraftGlyphForeground = #009999;
+    editorGutterFoldingControlForeground = #009999;
+    editorGutterItemGlyphForeground = #009999;
+    editorGutterItemBackground = uiCommon.lightTextBackground;
+
+
+    peekViewBorder = uiCommon.primary2;
+    peekViewEditorBackground = uiCommon.lighterTextBackground;
+    peekViewEditorGutterBackground = uiCommon.lighterTextBackground;
+    // peekViewEditorMatchHighlightBackground = ;
+    // peekViewEditorMatchHighlightBorder = ;
+    peekViewTitleBackground = #222f1f;
+    peekViewTitleDescriptionForeground = uiCommon.primary2;
+    peekViewTitleLabelForeground = uiCommon.primary2;
+
+
+
+    //
+    // Debug
+    //
+
+    debugToolBarBackground = uiCommon.lightTextBackground;
+    debugToolBarBorder = uiCommon.window;
+    debugIconBreakpointForeground = uiCommon.statusError;
+
+
+
+
+    problemsErrorIconForeground = uiCommon.statusError;
+    problemsWarningIconForeground = uiCommon.statusWarning;
+    problemsInfoIconForeground = uiCommon.statusInfo;
+
+
+
+
+
+    //
+    // Testing
+    //
+
+    // TODO = These colors are derived from something (list colors?)
+    // if they are not specified here. Find out how that works.
+    testingRunAction = uiCommon.primary0;
+    testingIconErrored = uiCommon.statusError;
+    testingIconErroredRetired = translucent(uiCommon.statusError);
+    testingIconFailed = uiCommon.statusError;
+    testingIconFailedRetired = translucent(uiCommon.statusError);
+    testingIconPassed = uiCommon.primary2;
+    testingIconPassedRetired = translucent(uiCommon.primary2);
+    testingIconQueued = #cca700;
+    testingIconQueuedRetired = #cca700b3;
+    testingIconSkipped = #848484;
+    testingIconSkippedRetired = #848484b3;
+    testingIconUnset = #848484;
+    testingIconUnsetRetired = #848484b3;
+
+    testingPeekHeaderBackground = #222f1f;
+    testingPeekBorder = uiCommon.primary6;
+
+    // testingMessageErrorLineBackground = #aa0055;
+    // testingMessageInfoLineBackground = #aa0055;
+    // testingMessagePeekHeaderBackground = #aa0055;
+
+    testingMessageErrorBadgeBorder = #222f1f;
+    testingMessageErrorBadgeBackground = uiCommon.lighterTextBackground; // Sidebar title background
+    testingMessageErrorBadgeForeground = uiCommon.primary2;
+};
+
+// debugBlue = #01a3ec;
+//debugBlue = #01b5ec;
+// debugBlue = #45beff;
+// debugBlue = #45a2ff;
+// debugBlue = #24a4ff;
+// debugBlue = #2290FF; // Dodger blue
+// debugBlue = #0092c8; // Light sea green
+// debugBlue = #0093e9; //
+// debugBlue = #0eafff;
+// debugBlue = #0ebaff;
+debugBlue = #0bcaff;
+
+Palette debug = {
+    startForeground = debugBlue;
+    pauseForeground = debugBlue;
+    // stopForeground = #ec5b01;
+    // stopForeground = #6f3a67;
+
+    // stopForeground = #f01818;
+    // disconnectForeground = #eca901;
+    // restartForeground = #01ec7a;
+
+    stopForeground = #f12121;
+    disconnectForeground = #edb21e;
+    restartForeground = #1eee8a;
+
+    stepOverForeground = debugBlue;
+    stepIntoForeground = debugBlue;
+    stepOutForeground = debugBlue;
+    continueForeground = debugBlue;
+    stepBackForeground = debugBlue;
+};
+
+Palette panel = {
+    background =  uiCommon.lightTextBackground;
+    // background =  uiCommon.textBackground;
+    border = uiCommon.primary6;
+    dropBorder = #e7e7e7;
+    sectionBorder = #80808059;
+    sectionDropBackground = #53595d80;
+    sectionHeaderBackground = #80808033;
+    stickyScrollBackground = #1d1922;
+    stickyScrollShadow = #000000;
+    titleActiveBorder = uiCommon.primary6;
+    titleActiveForeground = uiCommon.primary6;
+    titleInactiveForeground = uiCommon.primary6;
+    titleBadgeBackground = uiCommon.primary8;
+    titleBadgeForeground = uiCommon.primary4;
+};
+
+Palette scm = {
+    graphHistoryItemRefColor = uiCommon.primary2;
+    graphHistoryItemRemoteRefColor = graph.data0;
+    graphHistoryItemBaseRefColor = graph.data1;
+    graphForeground1 = graph.data2;
+    graphForeground2 = graph.data3;
+    graphForeground3 = graph.data4;
+    graphForeground4 = graph.data5;
+    graphForeground5 = graph.data6;
+
+    // Colors that affect list items
+    resourceUntrackedForeground = uiCommon.primary5;
+    resourceModifiedForeground = uiCommon.primary3;
+    resourceIgnoredForeground = uiCommon.primary7;
+};
+
+Palette terminal = {
+    background = uiCommon.lightTextBackground;
+    border = ui.widgetBorder;
+    foreground = uiCommon.primary0;
+
+    black = base.black;
+    blue = base.blue;
+    brightBlack = base.brightBlack;
+    brightBlue = base.brightBlue;
+    brightCyan = base.brightCyan;
+    brightGreen = base.brightGreen;
+    brightMagenta = base.brightMagenta;
+    brightRed = base.brightRed;
+    brightWhite = base.brightWhite;
+    brightYellow = base.brightYellow;
+    cyan = base.cyan;
+    green = base.green;
+    magenta = base.magenta;
+    red = base.red;
+    white = base.white;
+    yellow = base.yellow;
+
+    selectionBackground = ui.editorSelectionBackground;
+    selectionForeground = ui.editorSelectionForeground;
+    inactiveSelectionBackground = ui.editorInactiveSelectionBackground;
+    findMatchBackground = ui.editorFindMatchBackground;
+    findMatchBorder = ui.editorFindMatchBorder;
+    findMatchHighlightBackground = ui.editorFindMatchHighlightBackground;
+    findMatchHighlightBorder = ui.editorFindMatchHighlightBorder;
+    hoverHighlightBackground = translucent(ui.listHoverBackground);
+    cursorBackground = base.red;   // TODO: Sensible theme color
+    cursorForeground = base.white; // TODO: Sensible theme color
+    dropBackground = ui.sideBarDropBackground;
+    tabActiveBorder = ui.tabActiveBorder;
+
+    // terminalCommandDecoration.defaultBackground = ;
+    // terminalCommandDecoration.successBackground = ;
+    // terminalCommandDecoration.errorBackground = ;
+    // terminalOverviewRuler.cursorForeground = ;
+    // terminalOverviewRuler.findMatchForeground = ;
+    // terminalStickyScroll.background = ;
+    // terminalStickyScroll.border = ;
+    // terminalStickyScrollHover.background = ;
+    // initialHintForeground = ;
+    // terminalOverviewRuler.border = ;
+    // terminalCommandGuide.foreground = ;
+
+    // terminalSymbolIcon.aliasForeground = ;
+    // terminalSymbolIcon.branchForeground = ;
+    // terminalSymbolIcon.commitForeground = ;
+    // terminalSymbolIcon.flagForeground = ;
+    // terminalSymbolIcon.optionForeground = ;
+    // terminalSymbolIcon.optionValueForeground = ;
+    // terminalSymbolIcon.methodForeground = ;
+    // terminalSymbolIcon.argumentForeground = ;
+    // terminalSymbolIcon.inlineSuggestionForeground = ;
+    // terminalSymbolIcon.fileForeground = ;
+    // terminalSymbolIcon.folderForeground = ;
+    // terminalSymbolIcon.pullRequestDoneForeground = ;
+    // terminalSymbolIcon.pullRequestForeground = ;
+    // terminalSymbolIcon.remoteForeground = ;
+    // terminalSymbolIcon.stashForeground = ;
+    // terminalSymbolIcon.symbolText = ;
+    // terminalSymbolIcon.symbolicLinkFileForeground = ;
+    // terminalSymbolIcon.symbolicLinkFolderForeground = ;
+    // terminalSymbolIcon.tagForeground = ;
+
+};
+
+

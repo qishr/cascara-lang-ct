@@ -1,0 +1,12 @@
+build
+
+.classpath
+.gradle
+.idea
+.settings
+.project
+
+*.jfr
+*.hprof
+/theme
+s.json

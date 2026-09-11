@@ -1,0 +1,355 @@
+Format vscode = {
+	template = "vscode-template";
+	suffix = ".json";
+};
+
+Template vscode-template = {{{
+    {
+		"name": "%vscode-properties.name%",
+		"type": "%vscode-properties.type%",
+		"semanticHighlighting": true,
+        {{{ insert vscode-ui, vscode-syntax separator "," }}}
+    }
+}}};
+
+Template vscode-ui = {{{
+		"colors": {
+		{{{ iterate vscode-ui-element separator "," }}}
+		}
+}}};
+
+Template vscode-ui-element = {{{
+			"%name%": "%value%"
+}}};
+
+// Template vscode-syntax = {{{
+// 	"tokenColors": [
+// 		{{{ if (vscode-syntax.annotation) insert vscode-syntax.annotation separator ",\n" }}}
+//     ]
+// }}};
+
+Template vscode-syntax = {{{
+		"tokenColors": [
+			{{{ iterate vscode-syntax-%name% separator ",\n" }}}
+		]
+}}};
+
+Template vscode-syntax-annotation = {{{
+			{
+				"settings": {
+					"foreground": "%value%",
+					"fontStyle": "italic"
+				},
+				"scope": [
+					"storage.type.annotation.java",
+					"meta.annotation.java",
+					"decorator"
+				],
+				"name": "annotation"
+			}
+}}};
+
+Template vscode-syntax-character = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"constant.character.java"
+				],
+				"name": "character"
+			}
+}}};
+
+Template vscode-syntax-comment = {{{
+			{
+				"settings": {
+					"foreground": "%value%",
+					"fontStyle": "italic"
+				},
+				"scope": [
+					"comment.java",
+					"comment.groovy",
+					"comment",
+					"punctuation.definition.comment"
+				],
+				"name": "comment"
+			}
+}}};
+
+Template vscode-syntax-constant = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"constant.language.java",
+					"enumMember",
+					"variable.other.constant",
+					"variable.other.enummember"
+				],
+				"name": "constant"
+			}
+}}};
+
+Template vscode-syntax-identifier = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"variable.other.java"
+				],
+				"name": "identifier"
+			}
+}}};
+
+Template vscode-syntax-keyword = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"keyword.java",
+					"keyword.groovy",
+					"keyword",
+					"variable.language.this.java",
+					"storage.modifier.implements.java",
+					"meta.class.identifier.java"
+				],
+				"name": "keyword"
+			}
+}}};
+
+Template vscode-syntax-modifier = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"storage.modifier"
+				],
+				"name": "modifier"
+			}
+}}};
+
+Template vscode-syntax-method = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"entity.name.function",
+					"entity.name.function.java"
+				],
+				"name": "method"
+			}
+}}};
+
+Template vscode-syntax-namespace = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"entity.name.namespace",
+					"entity.name.scope-resolution",
+					"namespace",
+					"meta.package.java",
+					"storage.modifier.package.java",
+					"storage.modifier.import.java",
+					"meta.import.java"
+				],
+				"name": "namespace"
+			}
+}}};
+
+Template vscode-syntax-number = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"number",
+					"constant.numeric",
+					"constant.language",
+					"support.constant",
+					"constant.character",
+					"constant.escape",
+					"keyword.other.unit",
+					"keyword.other"
+				],
+				"name": "number"
+			}
+}}};
+
+Template vscode-syntax-operator = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"constant.other.color",
+					"constant.other.symbol",
+					"constant.other.key",
+					"punctuation",
+					"meta.tag",
+					"punctuation.definition.tag",
+					"punctuation.separator.inheritance.php",
+					"punctuation.definition.tag.html",
+					"punctuation.definition.tag.begin.html",
+					"punctuation.definition.tag.end.html",
+					"punctuation.section.embedded",
+					"keyword.other.template",
+					"keyword.other.substitution"
+				],
+				"name": "operator"
+			}
+}}};
+
+Template vscode-syntax-other = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"other"
+				],
+				"name": "other"
+			}
+}}};
+
+Template vscode-syntax-primitive_type = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"storage.type.primitive",
+					"storage.type.primitive.java"
+				],
+				"name": "primitive_type"
+			}
+}}};
+
+Template vscode-syntax-reference_type = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"storage.type.java",
+					"entity.other.inherited-class.java",
+					"entity.name.type.class.java",
+					"storage.type.generic.java",
+					"entity.name.type",
+					"entity.name.type.class",
+					"storage.type.java"
+				],
+				"name": "reference_type"
+			}
+}}};
+
+Template vscode-syntax-regex = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"string.regexp.java",
+					"string.regexp"
+				],
+				"name": "regex"
+			}
+}}};
+
+Template vscode-syntax-string = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"string",
+					"string.java",
+					"string.groovy"
+				],
+				"name": "string"
+			}
+}}};
+
+Template vscode-syntax-variable = {{{
+			{
+				"settings": {
+					"foreground": "%value%"
+				},
+				"scope": [
+					"variable.java",
+					"variable.parameter",
+					"variable.parameter.java",
+					"variable.parameter.groovy",
+					"entity.name.class.java",
+					"entity.name.class.groovy",
+					"class",
+					"interface",
+					"enum",
+					"struct",
+					"typeParameter",
+					"type",
+					"variable.other.property",
+					"variable.other.readwrite",
+					"entity.name.variable",
+					"variable.other.definition.java",
+					"parameter",
+					"variable",
+					"property",
+					"meta.function-call.java"
+				],
+				"name": "variable"
+			}
+}}};
+
+Template vscode-syntax-yaml_name = {{{
+			{
+				"scope": [
+					"support.type.property-name.json.comments",
+					"support.type.property-name.json",
+					"entity.name.tag.yaml",
+					"variable.yaml",
+					"keyword.other.yaml"
+				],
+				"settings": {
+					"foreground": "%value%"
+				},
+				"name": "yaml_name"
+			}
+}}};
+
+Template vscode-syntax-yaml_value = {{{
+			{
+				"scope": [
+					"string.quoted.double.json.comments",
+					"string.quoted.double.json",
+					"string.json",
+					"constant.json",
+					"variable.json"
+				],
+				"settings": {
+					"foreground": "%value%"
+				},
+				"name": "yaml_value"
+			}
+}}};
+
+Template vscode-syntax-yaml_punctuation = {{{
+			{
+				"scope": [
+					"punctuation.definition.json",
+					"meta.brace.json"
+				],
+				"settings": {
+					"foreground": "%value%"
+				},
+				"name": "yaml_punctuation"
+			}
+}}};
+

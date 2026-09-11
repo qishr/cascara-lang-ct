@@ -1,0 +1,19 @@
+Properties vscode-properties = {
+    name = "Cascara Retro Green on Heavy Metal";
+    type = "dark";
+};
+
+include "color/text-green.ct";
+include "color/base.ct";
+
+Color window = heavyMetal;
+
+include "color/ui.ct";
+
+// Make comments slightly darker
+// than the auto-generated color
+lang.comment = uiCommon.primary7;
+
+include "theme/ghostty.ct";
+include "theme/vscode.ct";
+include "theme/iterm2.ct";

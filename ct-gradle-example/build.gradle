@@ -1,0 +1,34 @@
+import io.github.qishr.cascara.gradle.ct.CompileCtTask
+
+plugins {
+    id 'io.github.qishr.cascara-gradle-plugins.ct' version '0.1.0'
+    id 'base'
+}
+
+ct {
+    formats {
+        // When a configuration (e.g. 'retroAmber') for a format (e.g. ghostty)
+        // doesn't specify an output filename, the output filename is assembled
+        // based on the configuration name (e.g. 'retroAmber') changed into
+        // -kebab-case- and the suffix is obtained from the format definition
+        // (e.g. res://ghostty.tc)
+        ghostty {
+            retroAmber { entry = "retro-amber-on-bright-beige.ct"; }
+            retroGreen { entry = "retro-green-on-bright-beige.ct"; }
+        }
+
+        iterm2 {
+            retroAmber { entry = "retro-amber-on-bright-beige.ct"; }
+            retroGreen { entry = "retro-green-on-bright-beige.ct"; }
+        }
+
+        vscode {
+            retroAmberOnBrightBeige { entry = "retro-amber-on-bright-beige.ct"; }
+            retroAmberOnDullBeige   { entry = "retro-amber-on-dull-beige.ct";   }
+            retroAmberOnHeavyMetal  { entry = "retro-amber-on-heavy-metal.ct";  }
+            retroGreenOnBrightBeige { entry = "retro-green-on-bright-beige.ct"; }
+            retroGreenOnDullBeige   { entry = "retro-green-on-dull-beige.ct";   }
+            retroGreenOnHeavyMetal  { entry = "retro-green-on-heavy-metal.ct";  }
+        }
+    }
+}
