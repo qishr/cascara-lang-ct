@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("io.github.qishr:cascara-meta-bom:0.1.21"))
+    implementation(platform("io.github.qishr:cascara-meta-bom:$cascara_version"))
 
     // JUnit
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
@@ -32,11 +32,15 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClass = 'io.github.qishr.cascara.lang.ct.exec.CtRunner'
+    mainModule = 'cascara.lang.ct'
 }
 
 
 run {
     mainClass = 'io.github.qishr.cascara.lang.ct.exec.CtRunner'
+    mainModule = 'cascara.lang.ct'
+
+    args = ["-V"]
 
     // args = [
     //     "${rootDir}/example.ct",
@@ -59,12 +63,13 @@ run {
     //     "-o", "${rootDir}/build/output.json"
     // ]
 
-    args = [
-        "${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-dull-beige.ct",
-        // "-v",
-        "-f", "ghostty",
-        "-o", "${rootDir}/build/ghostty-amber.conf"
-    ]
+    // args = [
+    //     "${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-dull-beige.ct",
+    //     // "-v",
+    //     "-f", "ghostty",
+    //     "-o", "${rootDir}/build/ghostty-amber.conf"
+    // ]
+
 
     // args = [
     //     "${rootDir}/ct-gradle-example/src/main/ct/retro-amber-on-dull-beige.ct",
@@ -108,7 +113,8 @@ graalvmNative {
 
             // Helpful build flags for CLI binaries
             buildArgs.addAll([
-                '--no-fallback',                  // Fail build if standard JVM image is required
+                '--no-fallback',                     // Fail build if standard JVM image is required
+                "-Dapp.version=${project.version}",
                 '--enable-url-protocols=http,https', // If fetching remote resources
                 '-H:+ReportExceptionStackTraces',
                 '-Ob',

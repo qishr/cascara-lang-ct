@@ -1,3 +1,16 @@
+// License & Terms
+//
+// This file is part of **Cascara CT**.
+//
+// **Cascara CT** is free software: you can redistribute
+// it and/or modify them without restriction under the terms of
+// the MIT License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MIT License for more details.
+
 package io.github.qishr.cascara.lang.ct.exec;
 
 import java.io.InputStream;
@@ -27,8 +40,10 @@ import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
 import io.github.qishr.cascara.lang.ct.internal.CtMap;
 import io.github.qishr.cascara.lang.ct.processor.CtAstParser;
 
-@Command(name = "ct", mixinStandardHelpOptions = true, version = "ct 0.1",
-         description = "Executes a CT script, sending output to STDOUT or a specified file.")
+@Command(name = "ct",
+        mixinStandardHelpOptions = true,
+        versionProvider = CtRunner.VersionProvider.class,
+        description = "Executes a CT script, sending output to STDOUT or a specified file.")
 public class CtRunner implements Callable<Integer> {
     @Parameters(index = "0", description = "The CT script to execute.")
     private String inFile;
@@ -39,8 +54,35 @@ public class CtRunner implements Callable<Integer> {
     @Option(names = {"-f", "--format"}, description = "Output format[s]")
     private String outputFormats;
 
-    @Option(names = {"-v", "--verbose"}, description = "Debug output")
+    // @Option(names = {"-v", "--version"}, description = "Show version information")
+    // private boolean showVersion = false;
+
+    @Option(names = {"--verbose"}, description = "Debug output")
     private boolean verbose = false;
+
+    public static class VersionProvider implements CommandLine.IVersionProvider {
+        // Public no-arg constructor required by Picocli factory / GraalVM reflection
+        public VersionProvider() {
+        }
+
+        @Override
+        public String[] getVersion() {
+            // 1. Check system property set during GraalVM native compile
+            String sysPropVersion = System.getProperty("app.version");
+            if (sysPropVersion != null && !sysPropVersion.isBlank()) {
+                return new String[] { "cascara.lang.ct@" + sysPropVersion };
+            }
+
+            // 2. Fall back to JVM module descriptor if running on standard JVM
+            Module module = CtRunner.class.getModule();
+            if (module != null && module.getDescriptor() != null) {
+                return new String[] { module.getDescriptor().toNameAndVersion() };
+            }
+
+            // 3. Last-resort fallback
+            return new String[] { "cascara.lang.ct@0.1.0" };
+        }
+    }
 
     public CtRunner() {
     }

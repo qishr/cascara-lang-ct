@@ -47,23 +47,6 @@
         "allDeclaredMethods": true
     },
 
-
-    {
-        "name": "io.github.qishr.cascara.exp.target.AppTheme",
-        "queryAllDeclaredConstructors": true,
-        "allDeclaredConstructors": true,
-        "allPublicConstructors": true,
-        "allDeclaredFields": true,
-        "allDeclaredMethods": true
-    },
-    {
-        "name": "io.github.qishr.cascara.exp.target.SyntaxTheme",
-        "queryAllDeclaredConstructors": true,
-        "allDeclaredConstructors": true,
-        "allPublicConstructors": true,
-        "allDeclaredFields": true,
-        "allDeclaredMethods": true
-    },
     {
         "name": "io.github.qishr.cascara.color.ColorTransform",
         "allDeclaredMethods": true
@@ -75,5 +58,11 @@
         "allPublicConstructors": true,
         "allDeclaredFields": true,
         "allDeclaredMethods": true
+    },
+    {
+        "name": "io.github.qishr.cascara.lang.ct.exec.CtRunner$VersionProvider",
+        "allDeclaredConstructors": true,
+        "allPublicConstructors": true,
+        "queryAllDeclaredConstructors": true
     }
   ]
