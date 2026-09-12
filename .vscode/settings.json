@@ -1,13 +1,16 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.compile.nullAnalysis.mode": "automatic",
-
-    // "workbench.colorCustomizations": {
-    //     "activityBar.background": "#f00",
-    //     "titleBar.activeBackground": "#f00",
-    //     "statusBar.background": "#f00"
-    //   }
-
+    "java.test.config": {
+        "modulePaths": ["${workspaceFolder}/build/modulepath"],
+        "module": "cascara.lang.ct",
+        "vmArgs": [
+            "--module-path",
+            "${workspaceFolder}/build/modulepath",
+        ],
+        "java.project.referencedLibraries": [
+            "${workspaceFolder}/build/modulepath/*.jar"
+        ]
+    },
     "workbench.colorTheme": "Cascara Retro Green on Bright Beige"
-
 }

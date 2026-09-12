@@ -1,5 +1,3 @@
-// TODO: Need a way of specifying filename suffix
-
 Format ghostty = {
     template = "ghostty-template";
     suffix = ".conf";
