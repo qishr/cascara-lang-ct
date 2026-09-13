@@ -11,7 +11,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // MIT License for more details.
 
-package io.github.qishr.cascara.lang.ct.internal;
+package io.github.qishr.cascara.lang.ct.util;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;

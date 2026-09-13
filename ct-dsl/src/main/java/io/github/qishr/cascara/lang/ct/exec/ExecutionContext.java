@@ -18,7 +18,7 @@ import java.util.Map;
 
 import io.github.qishr.cascara.common.diagnostic.Diagnostic;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
-import io.github.qishr.cascara.lang.ct.internal.CtMap;
+import io.github.qishr.cascara.lang.ct.util.CtMap;
 
 public class ExecutionContext {
     public CtMap globalVariables;

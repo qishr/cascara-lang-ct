@@ -37,8 +37,8 @@ import io.github.qishr.cascara.common.util.UriScheme;
 import io.github.qishr.cascara.lang.ct.ast.CtDocument;
 import io.github.qishr.cascara.lang.ct.ast.CtNode;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
-import io.github.qishr.cascara.lang.ct.internal.CtMap;
 import io.github.qishr.cascara.lang.ct.processor.CtAstParser;
+import io.github.qishr.cascara.lang.ct.util.CtMap;
 
 @Command(name = "ct",
         mixinStandardHelpOptions = true,

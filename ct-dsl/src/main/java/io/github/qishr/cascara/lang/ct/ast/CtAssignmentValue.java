@@ -13,8 +13,8 @@
 
 package io.github.qishr.cascara.lang.ct.ast;
 
-import io.github.qishr.cascara.lang.ct.internal.CtType;
 import io.github.qishr.cascara.lang.ct.token.CtToken;
+import io.github.qishr.cascara.lang.ct.util.CtType;
 
 public class CtAssignmentValue extends CtNode {
     private CtMethodCall method;

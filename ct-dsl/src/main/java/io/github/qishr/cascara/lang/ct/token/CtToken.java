@@ -17,8 +17,8 @@ import java.net.URI;
 
 import io.github.qishr.cascara.common.lang.token.Token;
 import io.github.qishr.cascara.common.util.StringUtils;
-import io.github.qishr.cascara.lang.ct.internal.CtKeyword;
-import io.github.qishr.cascara.lang.ct.internal.CtType;
+import io.github.qishr.cascara.lang.ct.util.CtKeyword;
+import io.github.qishr.cascara.lang.ct.util.CtType;
 
 public class CtToken  implements Token {
     private URI uri;

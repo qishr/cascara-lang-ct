@@ -35,11 +35,11 @@ import io.github.qishr.cascara.common.util.ContentType;
 import io.github.qishr.cascara.common.property.Properties;
 import io.github.qishr.cascara.common.util.StringUtils;
 import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticCode;
-import io.github.qishr.cascara.lang.ct.internal.CtKeyword;
-import io.github.qishr.cascara.lang.ct.internal.CtType;
 import io.github.qishr.cascara.lang.ct.token.CtErrorToken;
 import io.github.qishr.cascara.lang.ct.token.CtToken;
 import io.github.qishr.cascara.lang.ct.token.CtTokenType;
+import io.github.qishr.cascara.lang.ct.util.CtKeyword;
+import io.github.qishr.cascara.lang.ct.util.CtType;
 
 public class CtTokenizer implements Tokenizer<CtToken> {
     private Reporter reporter = new NoOpReporter();

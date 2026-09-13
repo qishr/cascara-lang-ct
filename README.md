@@ -58,25 +58,25 @@ The plugin dynamically generates task providers for each target format and theme
 
 Build and install locally:
 
-```
+```bash
 ./gradlew build nativeCompile publishToMavenLocal
 ```
 
 Run CLI runner directly with -V (version):
 
-```
+```bash
 ./gradlew :ct-command:run
 ```
 
 Compile all configured CT themes across formats:
 
-```
+```bash
 ./gradlew compileAllCt
 ```
 
 Build the entire project including theme compilation:
 
-```
+```bash
 ./gradlew build
 ```
 

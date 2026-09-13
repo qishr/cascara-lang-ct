@@ -27,7 +27,7 @@ dependencies {
 }
 
 gradlePlugin {
-    website = "https://github.com/qishr/cascara-lang-ct"
+    website = "https://qishr.github.io/cascara/language-processors/ct/gradle-plugin/"
     vcsUrl = "https://github.com/qishr/cascara-lang-ct.git"
     plugins {
         javaLibraryConventions {
@@ -35,7 +35,7 @@ gradlePlugin {
             implementationClass = "io.github.qishr.cascara.gradle.ct.CtPlugin"
             displayName = "Cascara Color Theme Compiler Plugin"
             description = "Gradle plugin for compiling Cascara Color Theme (.ct) files across multiple editor formats."
-            tags = ['cascara', 'theme', 'color-theme', 'compiler']
+            tags = ['cascara', 'theme', 'color-theme', 'compiler', 'transform', 'templating', 'configuration-cache']
         }
     }
 }

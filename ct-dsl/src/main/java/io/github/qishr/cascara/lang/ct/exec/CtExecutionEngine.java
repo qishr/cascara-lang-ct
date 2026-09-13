@@ -57,12 +57,12 @@ import io.github.qishr.cascara.lang.ct.ast.CtStatement;
 import io.github.qishr.cascara.lang.ct.ast.CtString;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
 import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticCode;
-import io.github.qishr.cascara.lang.ct.internal.CtMap;
-import io.github.qishr.cascara.lang.ct.internal.CtType;
-import io.github.qishr.cascara.lang.ct.internal.CtVariable;
-import io.github.qishr.cascara.lang.ct.internal.CtType.Category;
 import io.github.qishr.cascara.lang.ct.processor.CtAstParser;
+import io.github.qishr.cascara.lang.ct.util.CtMap;
+import io.github.qishr.cascara.lang.ct.util.CtType;
+import io.github.qishr.cascara.lang.ct.util.CtVariable;
 import io.github.qishr.cascara.lang.ct.util.NumericParameter;
+import io.github.qishr.cascara.lang.ct.util.CtType.Category;
 
 public class CtExecutionEngine {
     private CtDocument doc;

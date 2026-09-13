@@ -12,7 +12,7 @@
 // MIT License for more details.
 
 module cascara.lang.ct {
-    requires cascara.common;
+    requires transitive cascara.common;
     requires cascara.common.io;
 
     exports io.github.qishr.cascara.lang.ct.ast;

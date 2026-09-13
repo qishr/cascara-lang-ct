@@ -50,13 +50,13 @@ import io.github.qishr.cascara.lang.ct.ast.CtString;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
 import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticCode;
 import io.github.qishr.cascara.lang.ct.diagnostic.CtParserException;
-import io.github.qishr.cascara.lang.ct.internal.CtKeyword;
-import io.github.qishr.cascara.lang.ct.internal.CtType;
 import io.github.qishr.cascara.lang.ct.internal.PreloadedTokenBuffer;
 import io.github.qishr.cascara.lang.ct.internal.TokenBuffer;
 import io.github.qishr.cascara.lang.ct.token.CtErrorToken;
 import io.github.qishr.cascara.lang.ct.token.CtToken;
 import io.github.qishr.cascara.lang.ct.token.CtTokenType;
+import io.github.qishr.cascara.lang.ct.util.CtKeyword;
+import io.github.qishr.cascara.lang.ct.util.CtType;
 
 public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
     private Reporter reporter = new NoOpReporter();
