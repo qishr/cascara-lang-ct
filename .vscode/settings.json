@@ -12,5 +12,5 @@
             "${workspaceFolder}/build/modulepath/*.jar"
         ]
     },
-    "workbench.colorTheme": "Cascara Retro Green on Bright Beige"
+    // "workbench.colorTheme": "Cascara Retro Green on Bright Beige"
 }

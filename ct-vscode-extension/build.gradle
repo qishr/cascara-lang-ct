@@ -1,0 +1,52 @@
+plugins {
+    id 'base'
+    id 'io.github.qishr.cascara-gradle-plugins.vsix' version '0.2.0'
+}
+
+// Useful gradle commands:
+//    ./gradlew build
+//    ./gradlew packageVsix
+//    ./gradlew installVsix
+//    ./gradlew reinstallVsix
+//    ./gradlew uninstallVsix
+
+vsix {
+    name        = "ct-language"
+    displayName = "CT Language Support"
+    description = "Syntax highlighting for the CT language."
+    version     = project.version.toString()
+    publisher   = "Cascara"
+    icon        = "images/icon.png"
+
+    categories "Programming Languages"
+
+    engines = [
+        "vscode": "^1.103.0"
+    ]
+
+    repository = [
+        "type": "git",
+        "url": project.scm_url
+        // "url": "$scm_url"
+    ]
+
+    readme      = layout.projectDirectory.file("README.md")
+    license     = rootProject.layout.projectDirectory.file("LICENSE")
+    changeLog   = layout.projectDirectory.file("CHANGELOG.md")
+    imagesDir   = layout.projectDirectory.dir("extension/images")
+
+    languages {
+        ct {
+            aliases = ["CT", "Color Transformation", "ct"]
+            fileExtensions = [".ct"]
+            configuration = "./language-configuration.json"
+        }
+    }
+
+    grammars.from(layout.projectDirectory.dir("extension/syntaxes"))
+}
+
+// Ensure execution flow
+tasks.named('build') {
+    dependsOn tasks.named('packageVsix')
+}

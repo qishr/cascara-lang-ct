@@ -1,0 +1,213 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/refs/heads/master/tmlanguage.json",
+    "name": "CT (Color Transformation)",
+    "scopeName": "source.ct",
+    "fileTypes": [
+      "ct"
+    ],
+    "patterns": [
+      {
+        "include": "#comments"
+      },
+      {
+        "include": "#keywords"
+      },
+      {
+        "include": "#types"
+      },
+      {
+        "include": "#hex-colors"
+      },
+      {
+        "include": "#strings"
+      },
+      {
+        "include": "#templates"
+      },
+      {
+        "include": "#functions"
+      },
+      {
+        "include": "#collections"
+      },
+      {
+        "include": "#member-access"
+      },
+      {
+        "include": "#identifiers"
+      },
+      {
+        "include": "#operators"
+      },
+      {
+        "include": "#punctuation"
+      }
+    ],
+    "repository": {
+      "comments": {
+        "patterns": [
+          {
+            "name": "comment.line.double-slash.ct",
+            "begin": "//",
+            "end": "$",
+            "captures": {
+              "0": {
+                "name": "punctuation.definition.comment.ct"
+              }
+            }
+          }
+        ]
+      },
+      "keywords": {
+        "patterns": [
+          {
+            "name": "keyword.control.ct",
+            "match": "\\b(import|include|output|insert|iterate|separator)\\b"
+          }
+        ]
+      },
+      "types": {
+        "patterns": [
+          {
+            "name": "entity.name.type.ct",
+            "match": "\\b(Color|Palette|Properties|Format|Template)\\b"
+          }
+        ]
+      },
+      "hex-colors": {
+        "patterns": [
+          {
+            "name": "constant.other.color.rgb-hex.ct",
+            "match": "#[0-9a-fA-F]{8}\\b|#[0-9a-fA-F]{6}\\b"
+          }
+        ]
+      },
+      "strings": {
+        "patterns": [
+          {
+            "name": "string.quoted.double.ct",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+              {
+                "name": "constant.character.escape.ct",
+                "match": "\\\\."
+              },
+              {
+                "name": "string.other.link.ct",
+                "match": "res://[a-zA-Z0-9_\\-/\\.]+"
+              }
+            ]
+          }
+        ]
+      },
+      "templates": {
+        "patterns": [
+          {
+            "name": "string.unquoted.template.ct",
+            "begin": "\\{\\{\\{",
+            "end": "\\}\\}\\}",
+            "beginCaptures": {
+              "0": {
+                "name": "punctuation.definition.template.begin.ct"
+              }
+            },
+            "endCaptures": {
+              "0": {
+                "name": "punctuation.definition.template.end.ct"
+              }
+            },
+            "patterns": [
+              { "include": "$self" },
+              {
+                "name": "variable.other.enummember.ct",
+                "match": "%[a-zA-Z0-9_\\-\\.]*%"
+              },
+              {
+                "name": "keyword.control.template.ct",
+                "match": "\\b(insert|iterate|separator)\\b"
+              },
+              {
+                "name": "comment.line.double-slash.ct",
+                "match": "//.*$"
+              }
+            ]
+          }
+        ]
+      },
+      "functions": {
+        "patterns": [
+          {
+            "name": "entity.name.function.ct",
+            "match": "\\b[a-zA-Z_][a-zA-Z0-9_\\-]*\\s*(?=\\()"
+          }
+        ]
+      },
+      "collections": {
+        "patterns": [
+          {
+            "begin": "\\{",
+            "end": "\\}",
+            "beginCaptures": {
+              "0": {
+                "name": "punctuation.section.block.begin.ct"
+              }
+            },
+            "endCaptures": {
+              "0": {
+                "name": "punctuation.section.block.end.ct"
+              }
+            },
+            "patterns": [
+              {
+                "include": "$self"
+              }
+            ]
+          }
+        ]
+      },
+      "member-access": {
+        "patterns": [
+          {
+            "match": "\\b([a-zA-Z_][a-zA-Z0-9_\\-]*)\\.([a-zA-Z_][a-zA-Z0-9_\\-]*)\\b",
+            "captures": {
+              "1": {
+                "name": "variable.other.object.ct"
+              },
+              "2": {
+                "name": "variable.other.property.ct"
+              }
+            }
+          }
+        ]
+      },
+      "identifiers": {
+        "patterns": [
+          {
+            "name": "variable.other.readwrite.ct",
+            "match": "\\b[a-zA-Z_][a-zA-Z0-9_\\-]*\\b"
+          }
+        ]
+      },
+      "operators": {
+        "patterns": [
+          {
+            "name": "keyword.operator.assignment.ct",
+            "match": "="
+          }
+        ]
+      },
+      "punctuation": {
+        "patterns": [
+          {
+            "name": "punctuation.terminator.statement.ct",
+            "match": ";"
+          },
+          {
+            "name": "punctuation.separator.comma.ct",
+            "match": ","
+          }
+        ]
+      }
+    }
+  }
