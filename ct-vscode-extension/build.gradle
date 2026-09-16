@@ -1,6 +1,6 @@
 plugins {
     id 'base'
-    id 'io.github.qishr.cascara-gradle-plugins.vsix' version '0.2.0'
+    id 'io.github.qishr.cascara-gradle-plugins.vsix' version '0.2.2'
 }
 
 // Useful gradle commands:
@@ -11,12 +11,12 @@ plugins {
 //    ./gradlew uninstallVsix
 
 vsix {
-    name        = "ct-language"
-    displayName = "CT Language Support"
+    name        = "cascara-lang-ct"
+    displayName = "Cascara CT Language"
     description = "Syntax highlighting for the CT language."
     version     = project.version.toString()
     publisher   = "Cascara"
-    icon        = "images/icon.png"
+    icon        = "./images/icon.png"
 
     categories "Programming Languages"
 
