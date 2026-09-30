@@ -54,7 +54,7 @@ public class DebugUtils {
                         String.format("%2d", i),
                         t.getType().toString(),
                         String.format("L:%-3d C:%-3d", t.getStartLine(), t.getStartColumn()),
-                        "", et.getCode().getMessage()
+                        "", et.getCode().getFormat()
                     );
                     break;
                 case KEYWORD, IDENTIFIER, DECLARATION, STRING, COMMENT:

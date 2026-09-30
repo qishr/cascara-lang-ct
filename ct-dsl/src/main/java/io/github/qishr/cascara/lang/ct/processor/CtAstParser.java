@@ -22,7 +22,7 @@ import java.util.List;
 import io.github.qishr.cascara.common.diagnostic.Diagnostic.Level;
 import io.github.qishr.cascara.common.diagnostic.NoOpReporter;
 import io.github.qishr.cascara.common.diagnostic.Reporter;
-import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
+import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
 import io.github.qishr.cascara.common.lang.processor.AstParser;
 import io.github.qishr.cascara.common.lang.util.LanguageOptions;
 import io.github.qishr.cascara.common.util.ContentType;
@@ -48,7 +48,7 @@ import io.github.qishr.cascara.lang.ct.ast.CtSingleNameStatement;
 import io.github.qishr.cascara.lang.ct.ast.CtStatement;
 import io.github.qishr.cascara.lang.ct.ast.CtString;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
-import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticCode;
+import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticMessage;
 import io.github.qishr.cascara.lang.ct.diagnostic.CtParserException;
 import io.github.qishr.cascara.lang.ct.internal.PreloadedTokenBuffer;
 import io.github.qishr.cascara.lang.ct.internal.TokenBuffer;
@@ -180,7 +180,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
                     } else {
                         CtName name = parseName();
                         if (name == null) {
-                            error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                            error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                             skipError();
                         } else {
                             CtSingleNameStatement statement = new CtSingleNameStatement(token);
@@ -193,7 +193,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
                         }
                     }
                 } else {
-                    error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                    error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                     skipError();
                 }
             }
@@ -227,7 +227,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
             else if (keyword == CtKeyword.IF) {
                 return parseIfStatement();
             } else {
-                error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                 skipError();
                 return null;
             }
@@ -318,7 +318,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
                 statement.setSeparator(parseSeparator());
             } else {
                 // TODO: Is this necessary?
-                // error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                // error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
             }
             if (tokenBuffer.peek().getType() == CtTokenType.SEMICOLON) {
                 tokenBuffer.advance();
@@ -349,7 +349,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
                 separator.setString(parseString());
             }
             else {
-                error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                 skipError();
             }
             return separator;
@@ -523,7 +523,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
                         if (statement != null) {
                             value.addStatement(statement);
                         } else {
-                            error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                            error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                             skipError();
                         }
                     } else if (token.isIdentifier()) {
@@ -531,14 +531,14 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
                             value.addStatement(parseAssignment());
                             continue;
                         } else {
-                            error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                            error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                             skipError();
                         }
                     } else if (token.isType()) {
                         value.addStatement(parseDeclaration());
                         continue;
                     } else {
-                        error(token, CtDiagnosticCode.UNEXPECTED_TOKEN, token);
+                        error(token, CtDiagnosticMessage.UNEXPECTED_TOKEN, token);
                         skipError();
                     }
                 }
@@ -703,7 +703,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
     private CtToken consume(CtTokenType type) {
         CtToken token = tokenBuffer.advance();
         if (token.getType() != type) {
-            error(token, CtDiagnosticCode.EXPECTED, type, token.getType());
+            error(token, CtDiagnosticMessage.EXPECTED, type, token.getType());
         }
         return token;
     }
@@ -746,7 +746,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
         depth = 0;
     }
 
-    protected void error(CtToken token, DiagnosticCode code, Object... details) {
+    protected void error(CtToken token, DiagnosticMessage code, Object... details) {
         if (token instanceof CtErrorToken error) {
             code = error.getCode();
             details = error.getDetails();
@@ -758,7 +758,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
         }
     }
 
-    protected void warn(CtToken token, DiagnosticCode code, Object... details) {
+    protected void warn(CtToken token, DiagnosticMessage code, Object... details) {
         reporter.warnAt(token, code, details);
     }
 

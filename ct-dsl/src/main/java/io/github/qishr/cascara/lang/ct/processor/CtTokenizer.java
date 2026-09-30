@@ -25,7 +25,7 @@ import java.util.List;
 import io.github.qishr.cascara.common.diagnostic.NoOpReporter;
 import io.github.qishr.cascara.common.diagnostic.Reporter;
 import io.github.qishr.cascara.common.diagnostic.UnimplementedMethodException;
-import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
+import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
 import io.github.qishr.cascara.common.lang.processor.Tokenizer;
 import io.github.qishr.cascara.common.lang.util.LanguageOptions;
 import io.github.qishr.cascara.common.lang.util.SourceBuffer;
@@ -34,7 +34,7 @@ import io.github.qishr.cascara.common.lang.util.SourceStringBuffer;
 import io.github.qishr.cascara.common.util.ContentType;
 import io.github.qishr.cascara.common.property.Properties;
 import io.github.qishr.cascara.common.util.StringUtils;
-import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticCode;
+import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticMessage;
 import io.github.qishr.cascara.lang.ct.token.CtErrorToken;
 import io.github.qishr.cascara.lang.ct.token.CtToken;
 import io.github.qishr.cascara.lang.ct.token.CtTokenType;
@@ -150,7 +150,7 @@ public class CtTokenizer implements Tokenizer<CtToken> {
             int previousOffset = buffer.offset();
             scanToken();
             if (buffer.offset() == previousOffset) {
-                error(CtDiagnosticCode.ERROR, "Unscanned characters");
+                error(CtDiagnosticMessage.ERROR, "Unscanned characters");
                 return null;
             }
 
@@ -269,7 +269,7 @@ public class CtTokenizer implements Tokenizer<CtToken> {
             scanText();
             return;
         }
-        error(CtDiagnosticCode.UNEXPECTED_CHAR, c);
+        error(CtDiagnosticMessage.UNEXPECTED_CHAR, c);
     }
 
     private void scanTemplate() {
@@ -531,7 +531,7 @@ public class CtTokenizer implements Tokenizer<CtToken> {
     // Errors & Diagnostics
     //
 
-    private void error(DiagnosticCode msgCode, Object... details) {
+    private void error(DiagnosticMessage msgCode, Object... details) {
         CtErrorToken errorToken = new CtErrorToken(
             uri,
             buffer.line(),

@@ -13,9 +13,9 @@
 
 package io.github.qishr.cascara.lang.ct.diagnostic;
 
-import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
+import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
 
-public enum CtDiagnosticCode implements DiagnosticCode {
+public enum CtDiagnosticMessage implements DiagnosticMessage {
 
     ERROR("CTDSL-101", "{0}"),
     WARN("CTDSL-102", "{0}"),
@@ -38,13 +38,13 @@ public enum CtDiagnosticCode implements DiagnosticCode {
     UNDECLARED_TEMPLATE("CTDSL-208", "No template declated in format '{0}'");
 
     private final String code;
-    private final String message;
+    private final String format;
 
-    CtDiagnosticCode(String code, String message) {
+    CtDiagnosticMessage(String code, String format) {
         this.code = code;
-        this.message = message;
+        this.format = format;
     }
 
     @Override public String getCode() { return code; }
-    @Override public String getMessage() { return message; }
+    @Override public String getFormat() { return format; }
 }

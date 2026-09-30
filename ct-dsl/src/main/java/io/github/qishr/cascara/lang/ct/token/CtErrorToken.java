@@ -15,19 +15,19 @@ package io.github.qishr.cascara.lang.ct.token;
 
 import java.net.URI;
 
-import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
+import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
 
 public class CtErrorToken extends CtToken {
-    private final DiagnosticCode code;
+    private final DiagnosticMessage code;
     private final Object[] details;
 
-    public CtErrorToken(URI uri, int line, int column, int offset, DiagnosticCode code, Object... details) {
+    public CtErrorToken(URI uri, int line, int column, int offset, DiagnosticMessage code, Object... details) {
         super(uri, line, column, offset, CtTokenType.ERROR);
         this.code = code;
         this.details = details;
     }
 
-    public DiagnosticCode getCode() {
+    public DiagnosticMessage getCode() {
         return code;
     }
 

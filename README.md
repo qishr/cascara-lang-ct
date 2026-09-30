@@ -59,7 +59,7 @@ The plugin dynamically generates task providers for each target format and theme
 Build and install locally:
 
 ```bash
-./gradlew build nativeCompile publishToMavenLocal
+./gradlew build nativeCompile
 ```
 
 Run CLI runner directly with -V (version):

@@ -33,9 +33,9 @@ import io.github.qishr.cascara.common.diagnostic.NoOpReporter;
 import io.github.qishr.cascara.common.diagnostic.Reporter;
 import io.github.qishr.cascara.common.diagnostic.SilentCollectingReporter;
 import io.github.qishr.cascara.common.diagnostic.StandardReporter;
-import io.github.qishr.cascara.common.diagnostic.code.DiagnosticCode;
-import io.github.qishr.cascara.common.diagnostic.code.GenericDiagnosticCode;
-import io.github.qishr.cascara.common.lang.diagnostic.LangDiagnosticCode;
+import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
+import io.github.qishr.cascara.common.diagnostic.message.GenericMessage;
+import io.github.qishr.cascara.common.lang.diagnostic.LangMessage;
 import io.github.qishr.cascara.lang.ct.ast.CtAssignment;
 import io.github.qishr.cascara.lang.ct.ast.CtAssignmentValue;
 import io.github.qishr.cascara.lang.ct.ast.CtDeclaration;
@@ -56,7 +56,7 @@ import io.github.qishr.cascara.lang.ct.ast.CtSingleNameStatement;
 import io.github.qishr.cascara.lang.ct.ast.CtStatement;
 import io.github.qishr.cascara.lang.ct.ast.CtString;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
-import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticCode;
+import io.github.qishr.cascara.lang.ct.diagnostic.CtDiagnosticMessage;
 import io.github.qishr.cascara.lang.ct.processor.CtAstParser;
 import io.github.qishr.cascara.lang.ct.util.CtMap;
 import io.github.qishr.cascara.lang.ct.util.CtType;
@@ -111,18 +111,18 @@ public class CtExecutionEngine {
         for (String outputFormat : context.outputFormatsList) {
             CtMap format = context.formats.get(outputFormat);
             if (format == null) {
-                error(CtDiagnosticCode.UNDEFINED_FORMAT, outputFormat);
+                error(CtDiagnosticMessage.UNDEFINED_FORMAT, outputFormat);
                 continue;
             }
             CtVariable templateVar = format.get("template");
             if (templateVar == null) {
-                error(format, CtDiagnosticCode.UNDECLARED_TEMPLATE, outputFormat);
+                error(format, CtDiagnosticMessage.UNDECLARED_TEMPLATE, outputFormat);
                 continue;
             }
             String templateName = templateVar.asString();
             CtTemplate template = context.templates.get(templateName);
             if (template == null) {
-                error(templateVar, CtDiagnosticCode.UNDEFINED_TEMPLATE, templateVar);
+                error(templateVar, CtDiagnosticMessage.UNDEFINED_TEMPLATE, templateVar);
                 continue;
             }
 
@@ -133,7 +133,7 @@ public class CtExecutionEngine {
                 System.out.println(output);
             } else {
                 if (context.verbose) {
-                    reporter.info(GenericDiagnosticCode.INFO, "Modified output path: " + outputFilename);
+                    reporter.info(GenericMessage.INFO, "Modified output path: " + outputFilename);
                 }
                 try {
                     outputStream = new PrintStream(outputFilename.toString());
@@ -194,7 +194,7 @@ public class CtExecutionEngine {
             } else if (s instanceof CtSingleNameStatement nameStatement) {
                 processNameStatement(nameStatement);
             } else {
-                error(s, CtDiagnosticCode.ERROR, "Unexpected statement: " + s);
+                error(s, CtDiagnosticMessage.ERROR, "Unexpected statement: " + s);
                 return 1;
             }
             if (value != null) {
@@ -219,7 +219,7 @@ public class CtExecutionEngine {
         }
         RgbaColor color = getColor(nameStatement, null, name.asString(), false);
         if (color == null) {
-            error(nameStatement, CtDiagnosticCode.UNDEFINED_COLOR, name.asString());
+            error(nameStatement, CtDiagnosticMessage.UNDEFINED_COLOR, name.asString());
         } else {
             String hex = ColorUtils.toRgbHex(color);
             outputStream.print(hex);
@@ -234,7 +234,7 @@ public class CtExecutionEngine {
         for (CtIdentifier templateId : insertStatement.getIdentifiers()) {
             CtTemplate template = context.templates.get(templateId.asString());
             if (template == null) {
-                error(insertStatement, CtDiagnosticCode.ERROR, "Unknown template: " + templateId);
+                error(insertStatement, CtDiagnosticMessage.ERROR, "Unknown template: " + templateId);
                 continue;
             }
             if (n > 0) {
@@ -252,14 +252,14 @@ public class CtExecutionEngine {
 
         CtIdentifier parentTemplateId = parentTemplate.getIdentifier();
         if (parentTemplateId == null) {
-            error(iterateStatement, CtDiagnosticCode.ERROR, "Missing template ID: " + parentTemplate);
+            error(iterateStatement, CtDiagnosticMessage.ERROR, "Missing template ID: " + parentTemplate);
             return;
         }
 
         String paletteId = parentTemplateId.asString();
         CtMap palette = getPalette(iterateStatement, paletteId, false);
         if (palette == null) {
-            warn(iterateStatement, CtDiagnosticCode.ERROR, "Unknown palette: " + paletteId);
+            warn(iterateStatement, CtDiagnosticMessage.ERROR, "Unknown palette: " + paletteId);
             return;
         }
 
@@ -272,7 +272,7 @@ public class CtExecutionEngine {
                 String templateId = processVariables(iterateStatement, iterateStatement.getIdentifier().asString(), name, value);
                 CtTemplate template = context.templates.get(templateId);
                 if (template == null) {
-                    warn(iterateStatement, CtDiagnosticCode.ERROR, "Unknown template: " + templateId);
+                    warn(iterateStatement, CtDiagnosticMessage.ERROR, "Unknown template: " + templateId);
                     continue;
                 }
 
@@ -288,7 +288,7 @@ public class CtExecutionEngine {
     }
 
     private void processIfStatement(CtIfStatement ifStatement) {
-        error(ifStatement, CtDiagnosticCode.ERROR, "If statement not implemented");
+        error(ifStatement, CtDiagnosticMessage.ERROR, "If statement not implemented");
     }
 
     private String getSeparatorString(CtSeparator separatorNode) {
@@ -296,14 +296,14 @@ public class CtExecutionEngine {
             if (separatorNode.getIdentifier() != null) {
                 CtTemplate separatorTemplate = context.templates.get(separatorNode.getIdentifier().asString());
                 if (separatorTemplate == null) {
-                    error(separatorNode, CtDiagnosticCode.ERROR, "Unknown template: " + separatorNode.getIdentifier());
+                    error(separatorNode, CtDiagnosticMessage.ERROR, "Unknown template: " + separatorNode.getIdentifier());
                     return "";
                 }
                 return processTemplate(separatorTemplate, null, null, null);
             } else if (separatorNode.getString() != null) {
                 return separatorNode.getString().asString();
             } else {
-                error(separatorNode, CtDiagnosticCode.ERROR, "No separator");
+                error(separatorNode, CtDiagnosticMessage.ERROR, "No separator");
                 return "";
             }
         }
@@ -321,10 +321,10 @@ public class CtExecutionEngine {
         String name = identifier.asString();
         CtVariable variable = variableContext.get(name);
         if (variable != null) {
-            error(declaration, CtDiagnosticCode.ERROR, "Variable redeclared: " + name);
+            error(declaration, CtDiagnosticMessage.ERROR, "Variable redeclared: " + name);
         }
         if (type.getCategory() == Category.COLLECTION && variableContext != context.globalVariables) {
-            error(declaration, CtDiagnosticCode.NESTED_COLLECTION);
+            error(declaration, CtDiagnosticMessage.NESTED_COLLECTION);
         }
 
         if (type == CtType.FORMAT) {
@@ -337,7 +337,7 @@ public class CtExecutionEngine {
             template.setIdentifier(identifier);
             template.setUri(uri);
             if (template.getIdentifier() == null) {
-                error(declaration, CtDiagnosticCode.ERROR, "Template has no identifier");
+                error(declaration, CtDiagnosticMessage.ERROR, "Template has no identifier");
                 return false;
             }
             context.templates.put(name, template);
@@ -361,7 +361,7 @@ public class CtExecutionEngine {
             variable.setType(CtType.PROPERTIES);
         }
         else {
-            error(declaration, CtDiagnosticCode.ERROR, "Failed to create variable: " + name);
+            error(declaration, CtDiagnosticMessage.ERROR, "Failed to create variable: " + name);
         }
 
         if (variable != null) {
@@ -424,7 +424,7 @@ public class CtExecutionEngine {
             assignee.setStringValue(valueSource.getString());
         }
         else {
-            error(name, CtDiagnosticCode.ERROR, "Unable to process assignment value");
+            error(name, CtDiagnosticMessage.ERROR, "Unable to process assignment value");
         }
     }
 
@@ -444,7 +444,7 @@ public class CtExecutionEngine {
         if (from == null) return;
         RgbaColor to = getColor(toName, parentCollection, toName.asString(),  true);
         if (!(to instanceof RgbaColor)) {
-            error(methodCall, CtDiagnosticCode.ERROR, "Wrong return type: " +
+            error(methodCall, CtDiagnosticMessage.ERROR, "Wrong return type: " +
                 (to == null
                     ? "null"
                     : to.getClass().getSimpleName())
@@ -483,7 +483,7 @@ public class CtExecutionEngine {
         Object result = executeJvmMethod(methodCall, paramArray);
         if (result instanceof RgbaColor definition) {
             if (definition.green > 1 || definition.red > 1 || definition.blue > 1) {
-                error(methodCall, GenericDiagnosticCode.ERROR, "Invalid color");
+                error(methodCall, GenericMessage.ERROR, "Invalid color");
             }
             return definition;
         }
@@ -494,7 +494,7 @@ public class CtExecutionEngine {
         CtName methodName = methodCall.getName();
         Method jvmMethod = jvmMethods.get(methodName.asString());
         if (jvmMethod == null) {
-            error(methodCall, CtDiagnosticCode.ERROR, "Unknown method: " + methodName);
+            error(methodCall, CtDiagnosticMessage.ERROR, "Unknown method: " + methodName);
             return null;
         }
         return executeJvmMethod(null, jvmMethod, paramArray, methodCall);
@@ -505,13 +505,13 @@ public class CtExecutionEngine {
         try {
             result = jvmMethod.invoke(jvmInstance, paramArray);
         } catch (IllegalAccessException e) {
-            error(callSite, e, LangDiagnosticCode.FIELD_NOT_ACCESSIBLE, jvmMethod.getName());
+            error(callSite, e, LangMessage.FIELD_NOT_ACCESSIBLE, jvmMethod.getName());
             return null;
         } catch (InvocationTargetException e) {
-            error(callSite, e, LangDiagnosticCode.INVOCATION_TARGET_EXCEPTION, jvmMethod.getName());
+            error(callSite, e, LangMessage.INVOCATION_TARGET_EXCEPTION, jvmMethod.getName());
             return null;
         } catch (IllegalArgumentException e) {
-            error(callSite, e, LangDiagnosticCode.ILLEGAL_ARGUMENT_EXCEPTION, jvmMethod.getName());
+            error(callSite, e, LangMessage.ILLEGAL_ARGUMENT_EXCEPTION, jvmMethod.getName());
             return null;
         }
         return result;
@@ -593,7 +593,7 @@ public class CtExecutionEngine {
                 String output = processTemplate(nestedTemplate, name, value, template);
                 sb.append(output);
             } else {
-                error(node, CtDiagnosticCode.UNEXPECTED_NODE, node);
+                error(node, CtDiagnosticMessage.UNEXPECTED_NODE, node);
                 return "";
             }
         }
@@ -617,7 +617,7 @@ public class CtExecutionEngine {
                         sb.append("\n");
                     } else {
                         sb.append(c);
-                        warn(locationMarker, CtDiagnosticCode.INVALID_ESCAPE, next);
+                        warn(locationMarker, CtDiagnosticMessage.INVALID_ESCAPE, next);
                     }
                 }
             } else {
@@ -654,7 +654,7 @@ public class CtExecutionEngine {
                                 sb.append(variable.toString());
                             } else {
                                 variable = getVariable(locationMarker, null, variableName, false);
-                                warn(locationMarker, CtDiagnosticCode.UNDEFINED_VARIABLE, variableName);
+                                warn(locationMarker, CtDiagnosticMessage.UNDEFINED_VARIABLE, variableName);
                             }
                         }
 
@@ -671,7 +671,7 @@ public class CtExecutionEngine {
 
     private String processTemplateCode(CtTemplate template, String name, String value, CtTemplate parentTemplate) {
         if (template.getContent().isEmpty()) {
-            warn(CtDiagnosticCode.WARN, "Nested template has no code");
+            warn(CtDiagnosticMessage.WARN, "Nested template has no code");
             return "";
         }
 
@@ -734,7 +734,7 @@ public class CtExecutionEngine {
                 null
             );
 		} catch (LocalizableIOException e) {
-            error(inc, CtDiagnosticCode.ERROR, "Unable to include file: " + e.getMessage());
+            error(inc, CtDiagnosticMessage.ERROR, "Unable to include file: " + e.getMessage());
 		}
     }
 
@@ -744,7 +744,7 @@ public class CtExecutionEngine {
 
     private CtVariable getVariable(CtNode locationMarker, CtMap variableContext, String name, boolean createIfMissing) {
         if (name == null) {
-            error(locationMarker, GenericDiagnosticCode.UNEXPECTED_NULL_PARAMETER, "name", "getVariable");
+            error(locationMarker, GenericMessage.UNEXPECTED_NULL_PARAMETER, "name", "getVariable");
         }
         String identifier = null;
         CtMap map = variableContext == null ? context.globalVariables : variableContext;;
@@ -773,7 +773,7 @@ public class CtExecutionEngine {
                     String propertyName = parts[i+1];
                     CtVariable property = getVariableProperty(current, propertyName);
                     if (property == null) {
-                        error(locationMarker, CtDiagnosticCode.UNDEFINED_PROPERTY, propertyName);
+                        error(locationMarker, CtDiagnosticMessage.UNDEFINED_PROPERTY, propertyName);
                     }
                     return property;
 
@@ -822,11 +822,11 @@ public class CtExecutionEngine {
                 return property;
             }
             else {
-                error(variable, CtDiagnosticCode.ERROR, "Property " + propertyName + " does not exist for type Color");
+                error(variable, CtDiagnosticMessage.ERROR, "Property " + propertyName + " does not exist for type Color");
                 return null;
             }
         }
-        error(variable, CtDiagnosticCode.ERROR, "Property " + propertyName + " does not exist for variable " + variable.getName());
+        error(variable, CtDiagnosticMessage.ERROR, "Property " + propertyName + " does not exist for variable " + variable.getName());
         return null;
     }
 
@@ -841,11 +841,11 @@ public class CtExecutionEngine {
                 }
                 variableContext.set(name, variable);
             } else {
-                error(locationMarker, CtDiagnosticCode.UNDEFINED_COLOR, name);
+                error(locationMarker, CtDiagnosticMessage.UNDEFINED_COLOR, name);
                 return null;
             }
         } else if (variable.getType() != null && variable.getType() != CtType.COLOR) {
-            error(locationMarker, CtDiagnosticCode.ERROR, "Variable " + name + " is not a color");
+            error(locationMarker, CtDiagnosticMessage.ERROR, "Variable " + name + " is not a color");
             return null;
         }
 
@@ -870,7 +870,7 @@ public class CtExecutionEngine {
         if (variable instanceof CtMap palette) {
             return palette;
         }
-        error(locationMarker, CtDiagnosticCode.ERROR, "Variable " + name + " is not a palette");
+        error(locationMarker, CtDiagnosticMessage.ERROR, "Variable " + name + " is not a palette");
         return null;
     }
 
@@ -895,19 +895,19 @@ public class CtExecutionEngine {
             try {
             Class<?> jvmType = loadClass(typeName);
             if (jvmType == null) {
-                error(i, CtDiagnosticCode.ERROR, "Unknown class " + typeName + " in import");
+                error(i, CtDiagnosticMessage.ERROR, "Unknown class " + typeName + " in import");
                 continue;
             }
             String methodName = importName.substring(lastDot + 1);
             List<Method> methods = getMethodsByName(jvmType, methodName);
             if (methods.isEmpty()) {
-                error(i, CtDiagnosticCode.ERROR, "Unknown method " + methodName + "in import");
+                error(i, CtDiagnosticMessage.ERROR, "Unknown method " + methodName + "in import");
                 continue;
             }
             Method method = methods.getFirst();
             jvmMethods.put(methodName, method);
             } catch (Exception e) {
-                error(i, CtDiagnosticCode.ERROR, "Unexpected error:" + e.getMessage());
+                error(i, CtDiagnosticMessage.ERROR, "Unexpected error:" + e.getMessage());
             }
         }
     }
@@ -953,7 +953,7 @@ public class CtExecutionEngine {
     // Diagnostics
     //
 
-    private void error(CtNode node, Throwable t, DiagnosticCode code, Object... details) {
+    private void error(CtNode node, Throwable t, DiagnosticMessage code, Object... details) {
         if (node.getToken() == null) {
             reporter.error(t, code, details);
         } else {
@@ -961,7 +961,7 @@ public class CtExecutionEngine {
         }
     }
 
-    private void error(CtNode node, DiagnosticCode code, Object... details) {
+    private void error(CtNode node, DiagnosticMessage code, Object... details) {
         if (node.getToken() == null) {
             reporter.error(code, details);
         } else {
@@ -969,11 +969,11 @@ public class CtExecutionEngine {
         }
     }
 
-    private void error(DiagnosticCode code, Object... details) {
+    private void error(DiagnosticMessage code, Object... details) {
         reporter.error(code, details);
     }
 
-    private void warn(CtNode node, DiagnosticCode code, Object... details) {
+    private void warn(CtNode node, DiagnosticMessage code, Object... details) {
         if (node.getToken() == null) {
             reporter.warn(code, details);
         } else {
@@ -990,7 +990,7 @@ public class CtExecutionEngine {
         return nodeUri;
     }
 
-    private void warn(DiagnosticCode code, Object... details) {
+    private void warn(DiagnosticMessage code, Object... details) {
         reporter.warn(code, details);
     }
 
