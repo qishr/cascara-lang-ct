@@ -22,9 +22,9 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import io.github.qishr.cascara.common.diagnostic.NoOpReporter;
-import io.github.qishr.cascara.common.diagnostic.Reporter;
-import io.github.qishr.cascara.common.diagnostic.UnimplementedMethodException;
+import io.github.qishr.cascara.common.diagnostic.report.NoOpReporter;
+import io.github.qishr.cascara.common.diagnostic.report.Reporter;
+import io.github.qishr.cascara.common.diagnostic.exception.UnimplementedMethodException;
 import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
 import io.github.qishr.cascara.common.lang.processor.Tokenizer;
 import io.github.qishr.cascara.common.lang.util.LanguageOptions;

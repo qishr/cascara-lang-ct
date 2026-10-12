@@ -16,7 +16,7 @@ package io.github.qishr.cascara.lang.ct.internal;
 import java.io.InputStream;
 import java.io.Reader;
 
-import io.github.qishr.cascara.common.diagnostic.Reporter;
+import io.github.qishr.cascara.common.diagnostic.report.Reporter;
 import io.github.qishr.cascara.lang.ct.processor.CtTokenizer;
 import io.github.qishr.cascara.lang.ct.token.CtToken;
 

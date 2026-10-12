@@ -24,9 +24,9 @@ import java.util.concurrent.Callable;
 
 import io.github.qishr.cascara.common.diagnostic.Diagnostic;
 import io.github.qishr.cascara.common.diagnostic.Diagnostic.Level;
-import io.github.qishr.cascara.common.diagnostic.LocalizableIOException;
-import io.github.qishr.cascara.common.diagnostic.Reporter;
-import io.github.qishr.cascara.common.diagnostic.SilentCollectingReporter;
+import io.github.qishr.cascara.common.diagnostic.exception.LocalizableIOException;
+import io.github.qishr.cascara.common.diagnostic.report.Reporter;
+import io.github.qishr.cascara.common.diagnostic.report.SilentCollectingReporter;
 import io.github.qishr.cascara.common.io.IOUtils;
 import io.github.qishr.cascara.common.io.provider.ResResourceProvider;
 import io.github.qishr.cascara.common.util.CommandLine;

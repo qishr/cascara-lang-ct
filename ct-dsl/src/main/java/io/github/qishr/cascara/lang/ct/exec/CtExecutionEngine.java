@@ -28,11 +28,11 @@ import java.util.Map;
 import io.github.qishr.cascara.common.color.ColorUtils;
 import io.github.qishr.cascara.common.color.RgbaColor;
 import io.github.qishr.cascara.common.diagnostic.Diagnostic.Level;
-import io.github.qishr.cascara.common.diagnostic.LocalizableIOException;
-import io.github.qishr.cascara.common.diagnostic.NoOpReporter;
-import io.github.qishr.cascara.common.diagnostic.Reporter;
-import io.github.qishr.cascara.common.diagnostic.SilentCollectingReporter;
-import io.github.qishr.cascara.common.diagnostic.StandardReporter;
+import io.github.qishr.cascara.common.diagnostic.exception.LocalizableIOException;
+import io.github.qishr.cascara.common.diagnostic.report.NoOpReporter;
+import io.github.qishr.cascara.common.diagnostic.report.Reporter;
+import io.github.qishr.cascara.common.diagnostic.report.SilentCollectingReporter;
+import io.github.qishr.cascara.common.diagnostic.report.LocalReporter;
 import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
 import io.github.qishr.cascara.common.diagnostic.message.GenericMessage;
 import io.github.qishr.cascara.common.lang.diagnostic.LangMessage;
@@ -66,7 +66,7 @@ import io.github.qishr.cascara.lang.ct.util.CtType.Category;
 
 public class CtExecutionEngine {
     private CtDocument doc;
-    private Reporter reporter = new StandardReporter();
+    private Reporter reporter = new LocalReporter();
 
     private URI uri;
     private boolean isEntryPoint;
