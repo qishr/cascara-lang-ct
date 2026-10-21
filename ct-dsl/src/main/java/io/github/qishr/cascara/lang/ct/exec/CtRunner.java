@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import io.github.qishr.cascara.common.content.type.ContentTypeStore;
 import io.github.qishr.cascara.common.diagnostic.Diagnostic;
 import io.github.qishr.cascara.common.diagnostic.Diagnostic.Level;
 import io.github.qishr.cascara.common.diagnostic.exception.LocalizableIOException;
@@ -29,6 +30,7 @@ import io.github.qishr.cascara.common.diagnostic.report.Reporter;
 import io.github.qishr.cascara.common.diagnostic.report.SilentCollectingReporter;
 import io.github.qishr.cascara.common.io.IOUtils;
 import io.github.qishr.cascara.common.io.provider.ResResourceProvider;
+import io.github.qishr.cascara.common.service.SPL;
 import io.github.qishr.cascara.common.util.CommandLine;
 import io.github.qishr.cascara.common.util.CommandLine.Command;
 import io.github.qishr.cascara.common.util.CommandLine.Option;
@@ -98,8 +100,9 @@ public class CtRunner implements Callable<Integer> {
 
     @Override
     public Integer call() throws LocalizableIOException {
-        // The following call is neccessary when running in Graalvm.
-        // Normally it happens automatically.
+        // The following two calls are neccessary when running in
+        // Graalvm. Normally they happen automatically.
+        SPL.getRoot().registerClass(ContentTypeStore.class);
         IOUtils.setResourceProvider(UriScheme.RES, new ResResourceProvider(CtRunner.class));
 
         ExecutionContext context = new ExecutionContext();

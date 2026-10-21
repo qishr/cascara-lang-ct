@@ -11,6 +11,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // MIT License for more details.
 
+/// Color Transformation DSL
 module cascara.lang.ct {
     requires transitive cascara.common;
     requires cascara.common.io;
