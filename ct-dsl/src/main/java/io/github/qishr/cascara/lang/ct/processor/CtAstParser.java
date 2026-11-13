@@ -22,9 +22,9 @@ import java.util.List;
 import io.github.qishr.cascara.common.diagnostic.Diagnostic.Level;
 import io.github.qishr.cascara.common.diagnostic.report.NoOpReporter;
 import io.github.qishr.cascara.common.diagnostic.report.Reporter;
-import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
+import io.github.qishr.cascara.common.diagnostic.message.LocalizableMessage;
 import io.github.qishr.cascara.common.lang.processor.AstParser;
-import io.github.qishr.cascara.common.lang.util.LanguageOptions;
+import io.github.qishr.cascara.common.lang.util.LanguageConfig;
 import io.github.qishr.cascara.common.util.ContentType;
 import io.github.qishr.cascara.common.property.Properties;
 import io.github.qishr.cascara.common.util.TermUtils;
@@ -83,8 +83,8 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
     }
 
     @Override
-    public CtAstParser setOptions(LanguageOptions<?> options) {
-        throw new UnsupportedOperationException("Unimplemented method 'setOptions'");
+    public CtAstParser setConfig(LanguageConfig<?> options) {
+        throw new UnsupportedOperationException("Unimplemented method 'setConfig'");
     }
 
     public CtAstParser setUri(URI uri) {
@@ -138,7 +138,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
             // We don't set the tokenizer's reporter.
             // If the caller wants to set it, they should use:
             //   parser.getTokenizer().setReporter()
-            // tokenizer.setOptions(options);
+            // tokenizer.setConfig(options);
         }
         return tokenizer;
     }
@@ -746,7 +746,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
         depth = 0;
     }
 
-    protected void error(CtToken token, DiagnosticMessage code, Object... details) {
+    protected void error(CtToken token, LocalizableMessage code, Object... details) {
         if (token instanceof CtErrorToken error) {
             code = error.getCode();
             details = error.getDetails();
@@ -758,7 +758,7 @@ public class CtAstParser implements AstParser<CtNode, CtToken, CtTokenizer> {
         }
     }
 
-    protected void warn(CtToken token, DiagnosticMessage code, Object... details) {
+    protected void warn(CtToken token, LocalizableMessage code, Object... details) {
         reporter.warnAt(token, code, details);
     }
 

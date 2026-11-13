@@ -15,6 +15,7 @@
 module cascara.lang.ct {
     requires transitive cascara.common;
     requires cascara.common.io;
+    requires info.picocli;
 
     exports io.github.qishr.cascara.lang.ct.ast;
     exports io.github.qishr.cascara.lang.ct.exec;

@@ -31,16 +31,17 @@ import io.github.qishr.cascara.common.diagnostic.report.SilentCollectingReporter
 import io.github.qishr.cascara.common.io.IOUtils;
 import io.github.qishr.cascara.common.io.provider.ResResourceProvider;
 import io.github.qishr.cascara.common.service.SPL;
-import io.github.qishr.cascara.common.util.CommandLine;
-import io.github.qishr.cascara.common.util.CommandLine.Command;
-import io.github.qishr.cascara.common.util.CommandLine.Option;
-import io.github.qishr.cascara.common.util.CommandLine.Parameters;
 import io.github.qishr.cascara.common.util.UriScheme;
 import io.github.qishr.cascara.lang.ct.ast.CtDocument;
 import io.github.qishr.cascara.lang.ct.ast.CtNode;
 import io.github.qishr.cascara.lang.ct.ast.CtTemplate;
 import io.github.qishr.cascara.lang.ct.processor.CtAstParser;
 import io.github.qishr.cascara.lang.ct.util.CtMap;
+
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
+import picocli.CommandLine.Parameters;;
 
 @Command(name = "ct",
         mixinStandardHelpOptions = true,
@@ -176,7 +177,7 @@ public class CtRunner implements Callable<Integer> {
     private Reporter setupReporter(URI uri, ExecutionContext context) {
         SilentCollectingReporter reporter = new SilentCollectingReporter()
             .setAnsiColoringEnabled(true)
-            .setDiagnosticConsumer(p -> {
+            .addDiagnosticConsumer(p -> {
                 if (p.getLevel().isProblem()) {
                     context.problems.add(p);
                 } else if (context.verbose || p.getLevel() == Level.INFO) {

@@ -13,24 +13,24 @@
 
 package io.github.qishr.cascara.lang.ct.diagnostic;
 
-import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
+import io.github.qishr.cascara.common.diagnostic.message.LocalizableMessage;
 import io.github.qishr.cascara.common.lang.diagnostic.ParserException;
 import io.github.qishr.cascara.lang.ct.token.CtToken;
 
 public class CtParserException extends ParserException {
 
     /// Standard constructor for parser-detected logic errors.
-    public CtParserException(int line, int column, DiagnosticMessage code, Object... details) {
+    public CtParserException(int line, int column, LocalizableMessage code, Object... details) {
         super(line, column, code, details);
     }
 
     /// Standard constructor for parser-detected logic errors.
-    public CtParserException(CtToken token, DiagnosticMessage code, Object... details) {
+    public CtParserException(CtToken token, LocalizableMessage code, Object... details) {
         super(token, code, details);
     }
 
     /// Constructor for I/O or Stream failures.
-    public CtParserException(Throwable cause, DiagnosticMessage code, Object... details) {
+    public CtParserException(Throwable cause, LocalizableMessage code, Object... details) {
         super(cause, code, details);
     }
 

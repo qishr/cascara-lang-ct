@@ -33,7 +33,7 @@ import io.github.qishr.cascara.common.diagnostic.report.NoOpReporter;
 import io.github.qishr.cascara.common.diagnostic.report.Reporter;
 import io.github.qishr.cascara.common.diagnostic.report.SilentCollectingReporter;
 import io.github.qishr.cascara.common.diagnostic.report.LocalReporter;
-import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
+import io.github.qishr.cascara.common.diagnostic.message.LocalizableMessage;
 import io.github.qishr.cascara.common.diagnostic.message.GenericMessage;
 import io.github.qishr.cascara.common.lang.diagnostic.LangMessage;
 import io.github.qishr.cascara.lang.ct.ast.CtAssignment;
@@ -505,13 +505,13 @@ public class CtExecutionEngine {
         try {
             result = jvmMethod.invoke(jvmInstance, paramArray);
         } catch (IllegalAccessException e) {
-            error(callSite, e, LangMessage.FIELD_NOT_ACCESSIBLE, jvmMethod.getName());
+            error(callSite, e, GenericMessage.ILLEGAL_ACCESS_EXCEPTION, jvmMethod.getName());
             return null;
         } catch (InvocationTargetException e) {
-            error(callSite, e, LangMessage.INVOCATION_TARGET_EXCEPTION, jvmMethod.getName());
+            error(callSite, e, GenericMessage.INVOCATION_TARGET_EXCEPTION, jvmMethod.getName());
             return null;
         } catch (IllegalArgumentException e) {
-            error(callSite, e, LangMessage.ILLEGAL_ARGUMENT_EXCEPTION, jvmMethod.getName());
+            error(callSite, e, GenericMessage.ILLEGAL_ARGUMENT_EXCEPTION, jvmMethod.getName());
             return null;
         }
         return result;
@@ -688,7 +688,7 @@ public class CtExecutionEngine {
         // and set their location to the correct line number
         SilentCollectingReporter reporter = new SilentCollectingReporter()
             .setAnsiColoringEnabled(true)
-            .setDiagnosticConsumer(p -> {
+            .addDiagnosticConsumer(p -> {
                 if (p.getLevel().isProblem()) {
                     p.setUri(template.getUri());
                     p.setLine(p.getLine() + template.getStartLine() - 1);
@@ -953,7 +953,7 @@ public class CtExecutionEngine {
     // Diagnostics
     //
 
-    private void error(CtNode node, Throwable t, DiagnosticMessage code, Object... details) {
+    private void error(CtNode node, Throwable t, LocalizableMessage code, Object... details) {
         if (node.getToken() == null) {
             reporter.error(t, code, details);
         } else {
@@ -961,7 +961,7 @@ public class CtExecutionEngine {
         }
     }
 
-    private void error(CtNode node, DiagnosticMessage code, Object... details) {
+    private void error(CtNode node, LocalizableMessage code, Object... details) {
         if (node.getToken() == null) {
             reporter.error(code, details);
         } else {
@@ -969,11 +969,11 @@ public class CtExecutionEngine {
         }
     }
 
-    private void error(DiagnosticMessage code, Object... details) {
+    private void error(LocalizableMessage code, Object... details) {
         reporter.error(code, details);
     }
 
-    private void warn(CtNode node, DiagnosticMessage code, Object... details) {
+    private void warn(CtNode node, LocalizableMessage code, Object... details) {
         if (node.getToken() == null) {
             reporter.warn(code, details);
         } else {
@@ -990,7 +990,7 @@ public class CtExecutionEngine {
         return nodeUri;
     }
 
-    private void warn(DiagnosticMessage code, Object... details) {
+    private void warn(LocalizableMessage code, Object... details) {
         reporter.warn(code, details);
     }
 

@@ -25,9 +25,9 @@ import java.util.List;
 import io.github.qishr.cascara.common.diagnostic.report.NoOpReporter;
 import io.github.qishr.cascara.common.diagnostic.report.Reporter;
 import io.github.qishr.cascara.common.diagnostic.exception.UnimplementedMethodException;
-import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
+import io.github.qishr.cascara.common.diagnostic.message.LocalizableMessage;
 import io.github.qishr.cascara.common.lang.processor.Tokenizer;
-import io.github.qishr.cascara.common.lang.util.LanguageOptions;
+import io.github.qishr.cascara.common.lang.util.LanguageConfig;
 import io.github.qishr.cascara.common.lang.util.SourceBuffer;
 import io.github.qishr.cascara.common.lang.util.SourceInputStreamBuffer;
 import io.github.qishr.cascara.common.lang.util.SourceStringBuffer;
@@ -71,7 +71,7 @@ public class CtTokenizer implements Tokenizer<CtToken> {
     }
 
     @Override
-    public CtTokenizer setOptions(LanguageOptions<?> options) {
+    public CtTokenizer setConfig(LanguageConfig<?> options) {
         // TODO Auto-generated method stub
         throw new UnimplementedMethodException();
     }
@@ -531,7 +531,7 @@ public class CtTokenizer implements Tokenizer<CtToken> {
     // Errors & Diagnostics
     //
 
-    private void error(DiagnosticMessage msgCode, Object... details) {
+    private void error(LocalizableMessage msgCode, Object... details) {
         CtErrorToken errorToken = new CtErrorToken(
             uri,
             buffer.line(),

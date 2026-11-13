@@ -13,9 +13,9 @@
 
 package io.github.qishr.cascara.lang.ct.diagnostic;
 
-import io.github.qishr.cascara.common.diagnostic.message.DiagnosticMessage;
+import io.github.qishr.cascara.common.diagnostic.message.LocalizableMessage;
 
-public enum CtDiagnosticMessage implements DiagnosticMessage {
+public enum CtDiagnosticMessage implements LocalizableMessage {
 
     ERROR("CTDSL-101", "{0}"),
     WARN("CTDSL-102", "{0}"),

@@ -196,11 +196,11 @@ public class PreloadedTokenBuffer implements TokenBuffer {
     // Errors and Diagnostics
     //
 
-    // private void warn(CtToken token, DiagnosticMessage code, Object... details) {
+    // private void warn(CtToken token, LocalizableMessage code, Object... details) {
     //     reporter.warnAt(token, code, details);
     // }
 
-    // private void error(CtToken token, DiagnosticMessage code, Object... details) {
+    // private void error(CtToken token, LocalizableMessage code, Object... details) {
     //     if (token instanceof YamlErrorToken error) {
     //         code = error.getCode();
     //         details = error.getDetails();

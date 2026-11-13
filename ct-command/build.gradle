@@ -4,6 +4,8 @@ plugins {
     id 'org.graalvm.buildtools.native' version '0.10.2'
 }
 
+// ./gradlew :ct-command:build -x javadoc -x test :ct-command:nativeCompile --no-configuration-cache
+
 tasks.withType(JavaCompile).configureEach {
     options.release = 21
 }
